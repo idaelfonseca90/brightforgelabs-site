@@ -143,7 +143,7 @@ def email_link(cls="", inner=None):
     return f'<!--email_off--><a{c} href="mailto:{EMAIL}">{inner}</a><!--/email_off-->'
 
 
-def page(slug, title, description, body, current=None, extra_ld=(), page_type="WebPage"):
+def page(slug, title, description, body, current=None, extra_ld=(), page_type="WebPage", script=""):
     url = f"{SITE}/{slug}" if slug else f"{SITE}/"
     graph = [ORG,
              {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/",
@@ -221,7 +221,7 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 </div>
 </div>
 </footer>
-</body>
+{script}</body>
 </html>
 """
 
@@ -277,6 +277,37 @@ def org_chart():
 </div>"""
 
 
+def phone():
+    av = lambda t, c: f'<span class="av" style="background:{c}">{t}</span>'
+    fr = f"""<div class="scr">
+<div class="scr-head"><span class="dot t-fr">{ICONS["scissors"]}</span><div>FadeReady<small>Live line · Main St. Barbers</small></div></div>
+<div class="scr-card"><h4>Now in the chair</h4><div class="row">{av("MJ","#3a1fa6")}<div class="grow"><b>Marcus J.</b><br><small>Skin fade · with Tony</small></div><span class="tag-now">Now</span></div></div>
+<div class="scr-card"><h4>Up next · 3 waiting</h4>
+<div class="row pulse">{av("DL","#e8590c")}<div class="grow"><b>Devin L.</b><br><small>Cut and beard · 8 min</small></div></div>
+<div class="row">{av("AR","#0f766e")}<div class="grow"><b>Andre R.</b><br><small>Kids cut · 20 min</small></div></div>
+<div class="row">{av("CS","#9d174d")}<div class="grow"><b>Chris S.</b><br><small>Lineup · 31 min</small></div></div></div>
+<div class="scr-card"><div class="kv"><span>Today's sales</span><b class="pos">$1,284</b></div><div class="kv"><span>Cuts done</span><b>27</b></div></div>
+</div>"""
+    tr = f"""<div class="scr">
+<div class="scr-head"><span class="dot t-tr">{ICONS["chart"]}</span><div>Trading toolkit<small>Stop size calculator</small></div></div>
+<div class="mkts"><span class="on">Futures</span><span>Forex</span><span>Stocks</span><span>Crypto</span></div>
+<div class="scr-card"><h4>Position size</h4><div class="big">3 contracts</div><div class="kv"><span>Risk</span><b>$300 (1%)</b></div><div class="kv"><span>Stop</span><b>20 ticks</b></div><div class="bar"><i></i></div></div>
+<div class="scr-card"><h4>Prop firm tracker</h4><div class="kv"><span>Evaluations and resets</span><b class="neg">−$612</b></div><div class="kv"><span>Payouts</span><b class="pos">+$2,450</b></div><div class="kv"><span>Net</span><b class="pos">+$1,838</b></div></div>
+<div class="scr-card"><h4>Daily journal</h4><small>Stuck to my plan. Calm, patient, no revenge trades.</small></div>
+</div>"""
+    sl = f"""<div class="scr">
+<div class="scr-head"><span class="dot t-sl">{ICONS["sparkle"]}</span><div>Salon app<small>Today · Polished Nail Studio</small></div></div>
+<div class="scr-card"><h4>Today's bookings</h4>
+<div class="slot"><time>10:00</time>{av("KM","#9d174d")}<div class="grow"><b>Kayla M.</b><br><small>Gel manicure</small></div></div>
+<div class="slot pulse"><time>10:45</time>{av("SR","#e8590c")}<div class="grow"><b>Sofia R.</b><br><small>Acrylic full set</small></div></div>
+<div class="slot"><time>12:00</time>{av("JT","#3a1fa6")}<div class="grow"><b>Jade T.</b><br><small>Pedicure</small></div></div></div>
+<div class="scr-card"><div class="kv"><span>Walk-ins waiting</span><b>2</b></div><div class="kv"><span>Today's sales</span><b class="pos">$860</b></div></div>
+</div>"""
+    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, the trading toolkit and the salon app">
+<div class="phone" aria-hidden="true"><div class="screen">{fr}{tr}{sl}</div></div>
+</div>"""
+
+
 def cta_band():
     return """<section style="padding-top:0">
 <div class="wrap">
@@ -295,14 +326,26 @@ def home():
     faq_ld = {"@type": "FAQPage", "@id": f"{SITE}/#faq",
               "mainEntity": [{"@type": "Question", "name": q,
                               "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
-    body = f"""<section class="hero">
+    body = f"""<section class="hero hero-live">
+<canvas class="embers" aria-hidden="true"></canvas>
 <div class="wrap">
 <div>
 <p class="eyebrow"><i></i>Brightforge Labs LLC · Florida, USA</p>
-<h1>We forge bright ideas into <span class="accent">simple, beautiful apps.</span></h1>
-<p class="lead">Brightforge Labs is the software company behind FadeReady and the apps that come next. We build tools that help people run their work, from the barbershop to the trading desk.</p>
+<h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span>barbershops.</span><span>traders.</span><span>nail salons.</span></span><span class="sr">barbershops, traders and nail salons.</span></span></h1>
+<p class="lead">We are the software company behind <b>FadeReady</b>. We build simple, fast and beautiful apps that help people run their work.</p>
 <div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
 <ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>3 apps</b>1 live, 2 coming</li></ul>
+</div>
+{phone()}
+</div>
+</section>
+
+<section class="alt" id="company">
+<div class="wrap split">
+<div>
+<span class="kicker">Who we are</span>
+<h2>What is Brightforge Labs?</h2>
+<p class="intro">Brightforge Labs LLC is a software company in Florida, USA. It is the parent company that owns and builds our apps, so every app gets the same care, the same security and the same team behind it.</p>
 </div>
 {org_chart()}
 </div>
@@ -317,11 +360,10 @@ def home():
 </div>
 </section>
 
-<section class="alt" id="what">
+<section class="alt" id="values">
 <div class="wrap">
-<span class="kicker">Who we are</span>
-<h2>What is Brightforge Labs?</h2>
-<p class="intro">Brightforge Labs LLC is a software company in Florida, USA. It is the parent company that owns and builds our apps, so every app gets the same care, the same security and the same team behind it.</p>
+<span class="kicker">Our promise</span>
+<h2>Every app we make is</h2>
 {value_list()}
 </div>
 </section>
@@ -335,7 +377,7 @@ def home():
 </section>
 {cta_band()}"""
     return page("", "Brightforge Labs: the company behind FadeReady and more apps",
-                DESCRIPTION, body, extra_ld=[FADEREADY, faq_ld])
+                DESCRIPTION, body, extra_ld=[FADEREADY, faq_ld], script='<script src="/site.js" defer></script>\n')
 
 
 def about():
