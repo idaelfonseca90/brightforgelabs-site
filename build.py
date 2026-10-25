@@ -277,6 +277,43 @@ def org_chart():
 </div>"""
 
 
+def forge():
+    """The logo as a living forge: the spark strikes the anvil, embers fly, and the apps it made float around it."""
+    m = 3.4  # logo scale inside the 400x400 emblem
+    o = 200 - 32 * m
+    tiles = [("fr", "o1", "scissors"), ("tr", "o2", "chart"), ("sl", "o3", "sparkle")]
+    cards = "".join(
+        f'<div class="orb {pos}"><div class="tile t-{k}">{ICONS[ic]}</div><div><b>{a["name"]}</b>{pill(a["status"])}</div></div>'
+        for (k, pos, ic), a in zip(tiles, APPS))
+    return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, the trading toolkit and the salon app around it">
+<div class="halo" aria-hidden="true"></div>
+<svg class="emblem" viewBox="0 0 400 400" aria-hidden="true">
+<defs>
+<linearGradient id="fg-anvil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB03A"/><stop offset="1" stop-color="#FF4A1C"/></linearGradient>
+<linearGradient id="fg-spark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF6C8"/><stop offset="1" stop-color="#FFB400"/></linearGradient>
+<linearGradient id="fg-line" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff8a3d" stop-opacity=".9"/><stop offset="1" stop-color="#b794ff" stop-opacity=".35"/></linearGradient>
+<radialGradient id="fg-heat" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
+</defs>
+<g class="ring"><circle cx="200" cy="200" r="168" fill="none" stroke="rgba(255,255,255,.14)" stroke-dasharray="2 9"/></g>
+<circle cx="200" cy="200" r="118" fill="none" stroke="rgba(255,170,80,.18)"/>
+<g class="links" fill="none" stroke="url(#fg-line)" stroke-width="2" stroke-dasharray="5 9" stroke-linecap="round">
+<path d="M115 118 L74 78"/><path d="M318 198 L342 196"/><path d="M126 292 L92 334"/>
+</g>
+<circle class="heat" cx="200" cy="{o + 38 * m:.0f}" r="96" fill="url(#fg-heat)"/>
+<g transform="translate({o:.1f} {o:.1f}) scale({m})">
+<path fill="url(#fg-anvil)" d="M8 36.5h43c0 3.2-2.6 5.5-6 5.5h-6l2 6h5.5v4h-29v-4H23l2-6h-5C14.5 42 10.5 40 8 36.5z"/>
+<circle class="flash" cx="32" cy="36" r="10" fill="none" stroke="#FFD27A" stroke-width=".8"/>
+<path class="star" fill="url(#fg-spark)" d="M32 8.5q1.9 10.4 11.5 12.5Q33.9 23.1 32 33.5 30.1 23.1 20.5 21 30.1 18.9 32 8.5z"/>
+<circle class="tw" cx="46" cy="11.5" r="2" fill="#FFD24A"/>
+<circle class="tw t2" cx="18.5" cy="12.5" r="1.4" fill="#FFD24A"/>
+<circle class="tw t3" cx="48.5" cy="28" r="1.2" fill="#FF9A1F"/>
+</g>
+</svg>
+<span class="emitter" aria-hidden="true"></span>
+{cards}
+</div>"""
+
+
 def phone():
     av = lambda t, c: f'<span class="av" style="background:{c}">{t}</span>'
     fr = f"""<div class="scr">
@@ -336,7 +373,7 @@ def home():
 <div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
 <ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>3 apps</b>1 live, 2 coming</li></ul>
 </div>
-{phone()}
+{forge()}
 </div>
 </section>
 
@@ -353,9 +390,14 @@ def home():
 
 <section id="apps">
 <div class="wrap">
+<div class="split apps-head">
+<div>
 <span class="kicker">Our apps</span>
 <h2>Apps made by Brightforge Labs</h2>
 <p class="intro">Each app does one job well for one kind of work. They all share the same promise: simple, fast, beautiful and secure.</p>
+</div>
+{phone()}
+</div>
 {app_cards()}
 </div>
 </section>

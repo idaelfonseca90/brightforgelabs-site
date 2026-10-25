@@ -189,7 +189,7 @@ section{padding:clamp(64px,9vw,108px) 0}
 .hero-live h1{color:#fff;font-size:clamp(2.6rem,6.4vw,4.6rem);margin-bottom:.3em}
 .hero-live h1 .sub{display:block;font-size:.62em;font-weight:600;color:var(--h-muted);letter-spacing:-.02em;margin-top:.25em}
 .rot{display:inline-grid;vertical-align:bottom;height:1.15em;overflow:hidden}
-.rot>span{grid-area:1/1;color:#ff9a4d;animation:rot 12s cubic-bezier(.7,0,.3,1) infinite;opacity:0}
+.rot>span{grid-area:1/1;background:linear-gradient(100deg,#ffd166,#ff8a3d 45%,#ff5c8a);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rot 12s cubic-bezier(.7,0,.3,1) infinite;opacity:0}
 .rot>span:nth-child(2){animation-delay:4s}.rot>span:nth-child(3){animation-delay:8s}
 .hero-live .lead{color:var(--h-muted)}
 .hero-live .lead b{color:#fff;font-weight:600}
@@ -248,3 +248,34 @@ section{padding:clamp(64px,9vw,108px) 0}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .split>*{min-width:0}
 @media (max-width:900px){.split{grid-template-columns:1fr;gap:32px}}
+
+/* the forge: logo emblem with apps around it */
+.forge{position:relative;width:min(100%,480px);aspect-ratio:1;margin-inline:auto}
+.halo{position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle,rgba(255,122,26,.42),rgba(124,58,237,.18) 55%,transparent 70%);animation:breathe 4.8s ease-in-out infinite}
+.emblem{position:relative;width:100%;height:100%;overflow:visible}
+.ring{transform-origin:200px 200px;animation:turn 80s linear infinite}
+.links path{animation:flow 1.6s linear infinite}
+.heat{transform-box:fill-box;transform-origin:center;animation:breathe 2.4s ease-in-out infinite}
+.star{transform-box:fill-box;transform-origin:50% 100%;animation:strike 2.4s cubic-bezier(.5,0,.2,1) infinite}
+.flash{transform-box:fill-box;transform-origin:center;opacity:0;animation:flash 2.4s ease-out infinite}
+.tw{animation:twinkle 2.4s ease-in-out infinite}.t2{animation-delay:.8s}.t3{animation-delay:1.6s}
+.emitter{position:absolute;left:50%;top:51%;width:1px;height:1px}
+.orb{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:14px;background:rgba(14,20,34,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 30px rgba(0,0,0,.35);color:#fff;animation:bob 6s ease-in-out infinite;white-space:nowrap}
+.orb .tile{width:36px;height:36px;border-radius:10px}
+.orb .tile svg{width:19px;height:19px}
+.orb b{display:block;font-size:.92rem;font-weight:600;margin-bottom:3px}
+.orb .pill{font-size:.68rem;padding:2px 8px}
+.orb .p-live{color:#6ce0a6;background:rgba(108,224,166,.12)}
+.orb .p-soon{color:#ffc277;background:rgba(255,194,119,.12)}
+.o1{left:0;top:8%}.o2{right:-4%;top:42%;animation-delay:-2s}.o3{left:4%;bottom:6%;animation-delay:-4s}
+@media (max-width:900px){.forge{width:min(100%,400px)}.o2{right:0}}
+@media (max-width:420px){.orb{padding:7px 10px 7px 7px;gap:8px}.orb .tile{width:28px;height:28px}.orb .tile svg{width:15px;height:15px}.orb b{font-size:.8rem}}
+.apps-head{align-items:center}
+.apps-head .stage{min-height:0}
+@keyframes breathe{50%{opacity:.7;transform:scale(1.06)}}
+@keyframes turn{to{transform:rotate(360deg)}}
+@keyframes flow{to{stroke-dashoffset:-28}}
+@keyframes strike{0%,70%,100%{transform:translateY(0) scale(1)}80%{transform:translateY(-6%) scale(1.08)}86%{transform:translateY(3%) scale(.94)}}
+@keyframes flash{0%,84%{opacity:0;transform:scale(.4)}86%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes twinkle{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.flash{display:none}}
