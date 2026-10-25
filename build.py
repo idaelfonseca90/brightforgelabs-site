@@ -17,9 +17,9 @@ SITE = "https://brightforgelabs.app"
 EMAIL = "hello@brightforgelabs.app"
 UPDATED = "2026-10-25"
 UPDATED_TEXT = "October 25, 2026"
-DESCRIPTION = ("Brightforge Labs LLC is a software company in Florida, USA. "
+DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady. "
                "We build simple, fast, beautiful apps for small businesses and independent pros, "
-               "like FadeReady for barbershops and a trading toolkit for traders.")
+               "with a trading toolkit and a salon app coming soon.")
 
 
 def css():
@@ -98,26 +98,42 @@ FADEREADY = {
     "publisher": {"@id": f"{SITE}/#organization"},
 }
 
+APPS = [
+    {"key": "fr", "name": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
+     "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
+     "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
+     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "FadeReady LLC"},
+    {"key": "tr", "name": "Trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
+     "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
+     "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
+     "href": "/contact", "link": "Get launch news", "org": "In development"},
+    {"key": "sl", "name": "Salon app", "for": "For nail salons", "status": "soon", "icon": "sparkle",
+     "text": "Everything FadeReady does for barbershops, made for nail salons.",
+     "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
+     "href": "/contact", "link": "Get launch news", "org": "In development"},
+]
+STATUS = {"live": ('p-live', "Live"), "soon": ('p-soon', "Coming soon")}
+
 FAQ = [
     ("What is Brightforge Labs?",
-     "Brightforge Labs LLC is a software company in Florida, USA. We build simple, fast, "
-     "beautiful apps for small businesses and independent pros, like barbers, salon owners and traders. "
-     "Brightforge Labs is the parent company of FadeReady."),
+     "Brightforge Labs LLC is a software company in Florida, USA. It is the parent company that owns "
+     "and builds our apps. We make simple, fast, beautiful apps for small businesses and independent pros, "
+     "like barbers, salon owners and traders."),
     ("Who makes FadeReady?",
      "FadeReady is made by Brightforge Labs. FadeReady is an app for barbershops. It handles "
      "booking, the live line, barber and client apps, bookkeeping, and license renewals. "
      "FadeReady LLC is owned by Brightforge Labs LLC."),
     ("What apps does Brightforge Labs make?",
-     "Our first app is FadeReady, for barbershops. Next is a trading toolkit for traders: a stop size "
-     "calculator for futures, forex, stocks and crypto, a trading journal, a daily journal, and a "
-     "prop firm tracker for evaluations, resets, fees and payouts. An app for nail salons is also on the way."),
+     "FadeReady for barbershops is live. Coming soon: a trading toolkit with a stop size calculator "
+     "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
+     "and a salon app that does everything FadeReady does, made for nail salons."),
     ("Who started Brightforge Labs?",
      "Brightforge Labs was started in 2026 by Idael Fonseca Hidalgo."),
     ("How do I contact Brightforge Labs?",
      f"Email us at {EMAIL}. We read every message."),
 ]
 
-NAV = [("/about", "About"), ("/#apps", "Apps"), ("/contact", "Contact")]
+NAV = [("/#apps", "Apps"), ("/about", "About"), ("/contact", "Contact")]
 
 
 def email_link(cls="", inner=None):
@@ -127,7 +143,7 @@ def email_link(cls="", inner=None):
     return f'<!--email_off--><a{c} href="mailto:{EMAIL}">{inner}</a><!--/email_off-->'
 
 
-def page(slug, title, description, body, current=None, extra_ld=(), page_type="WebPage", hero=False):
+def page(slug, title, description, body, current=None, extra_ld=(), page_type="WebPage"):
     url = f"{SITE}/{slug}" if slug else f"{SITE}/"
     graph = [ORG,
              {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/",
@@ -141,7 +157,10 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
     ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, separators=(",", ":"))
     nav = "".join(
         f'<li><a href="{href}"{" aria-current=page" if label == current else ""}>{label}</a></li>'
-        for href, label in NAV)
+        for href, label in NAV) + '<li><a class="nav-cta" href="/contact">Contact us</a></li>'
+    foot_apps = "".join(
+        f'<li><a href="{a["href"]}">{a["name"]}</a></li>' if a["status"] == "live"
+        else f'<li>{a["name"]} <small>(soon)</small></li>' for a in APPS)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -150,7 +169,7 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
-<meta name="theme-color" content="#120a33">
+<meta name="theme-color" content="#0b1220">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -166,7 +185,7 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 <meta property="og:image" content="{SITE}/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Brightforge Labs: bright ideas, forged into real apps.">
+<meta property="og:image:alt" content="Brightforge Labs: the company behind FadeReady and more apps.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
@@ -187,13 +206,19 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 </main>
 <footer class="site-foot">
 <div class="wrap">
-<p style="margin:0">© 2026 Brightforge Labs LLC · Florida, USA</p>
-<nav aria-label="Footer">
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy</a>
-<a href="/terms">Terms</a>
-</nav>
+<div class="foot-grid">
+<div class="foot-brand">
+<a class="brand" href="/" aria-label="Brightforge Labs home">{mark("ft")}<span>Brightforge <b>Labs</b></span></a>
+<p>Brightforge Labs LLC is a software company in Florida, USA. We own and build simple, fast, beautiful apps.</p>
+</div>
+<div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li>{email_link()}</li></ul></div>
+<div><h2>Apps</h2><ul>{foot_apps}</ul></div>
+<div><h2>Legal</h2><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Use</a></li></ul></div>
+</div>
+<div class="foot-base">
+<p>© 2026 Brightforge Labs LLC. All rights reserved.</p>
+<p>A Florida limited liability company · Florida, USA</p>
+</div>
 </div>
 </footer>
 </body>
@@ -201,12 +226,8 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 """
 
 
-SPARKS = '<div class="sparks" aria-hidden="true">' + "<i></i>" * 7 + "</div>"
-
-
 def page_hero(kicker, h1, lead):
-    return f"""<section class="hero page-hero">
-{SPARKS}
+    return f"""<section class="page-hero">
 <div class="wrap">
 <p class="eyebrow"><i></i>{kicker}</p>
 <h1>{h1}</h1>
@@ -215,16 +236,56 @@ def page_hero(kicker, h1, lead):
 </section>"""
 
 
-def value_cards():
+def value_list():
     items = [
-        ("simple", "c1", "Simple", "Anyone can use our apps. No training. No manual. Just tap and go."),
-        ("fast", "c2", "Fast", "Our apps open fast and feel instant, even on a slow phone signal."),
-        ("beautiful", "c3", "Beautiful", "Clean, bright screens that are a joy to look at every day."),
-        ("secure", "c4", "Secure", "We protect your data like it is our own. We never sell it."),
+        ("simple", "Simple", "Anyone can use our apps on day one. No training and no manual."),
+        ("fast", "Fast", "Screens open in a blink, even on a weak phone signal."),
+        ("beautiful", "Beautiful", "Clean, clear design that people enjoy using every day."),
+        ("secure", "Secure", "Your data is protected and private. We never sell it."),
     ]
-    return "".join(
-        f'<div class="card"><div class="ico {c}">{ICONS[i]}</div><h3>{t}</h3><p>{d}</p></div>'
-        for i, c, t, d in items)
+    return '<div class="values">' + "".join(
+        f'<div class="value"><div class="ico">{ICONS[i]}</div><h3>{t}</h3><p>{d}</p></div>'
+        for i, t, d in items) + "</div>"
+
+
+def pill(status):
+    cls, label = STATUS[status]
+    return f'<span class="pill {cls}">{label}</span>'
+
+
+def app_cards():
+    out = []
+    for a in APPS:
+        feats = "".join(f"<li>{f}</li>" for f in a["features"])
+        out.append(f"""<article class="app" id="{a['key']}">
+<div class="app-top"><div class="tile t-{a['key']}">{ICONS[a['icon']]}</div><div><h3>{a['name']}</h3><span class="for">{a['for']}</span></div>{pill(a['status'])}</div>
+<p>{a['text']}</p>
+<ul class="feat">{feats}</ul>
+<a class="more" href="{a['href']}">{a['link']} <span aria-hidden="true">→</span></a>
+</article>""")
+    return '<div class="apps">' + "".join(out) + "</div>"
+
+
+def org_chart():
+    kids = "".join(
+        f'<li><div class="tile t-{a["key"]}">{ICONS[a["icon"]]}</div><div><b>{a["name"]}</b><small>{a["org"]}</small></div>{pill(a["status"])}</li>'
+        for a in APPS)
+    return f"""<div class="org" role="group" aria-label="Brightforge Labs and its apps">
+<p class="org-cap">Our company</p>
+<div class="org-parent">{mark("org")}<div><strong>Brightforge Labs LLC</strong><span>Parent company · Florida, USA</span></div></div>
+<ul class="org-kids">{kids}</ul>
+</div>"""
+
+
+def cta_band():
+    return """<section style="padding-top:0">
+<div class="wrap">
+<div class="band">
+<div><h2>Let's talk.</h2><p>Questions, partnerships or press? Send us a note. A real person reads every message.</p></div>
+<div class="btns"><a class="btn btn-primary" href="/contact">Contact us</a><a class="btn btn-line" href="/about">About the company</a></div>
+</div>
+</div>
+</section>"""
 
 
 def home():
@@ -235,57 +296,33 @@ def home():
               "mainEntity": [{"@type": "Question", "name": q,
                               "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
     body = f"""<section class="hero">
-{SPARKS}
-{mark("hero", "hero-mark")}
 <div class="wrap">
-<p class="eyebrow"><i></i>Software company · Florida, USA</p>
-<h1>Brightforge Labs. <span class="grad">Bright ideas, forged into real apps.</span></h1>
-<p class="lead">We build simple, fast, beautiful apps that help people run their work, from the barbershop to the trading desk.</p>
-<div class="btns"><a class="btn btn-hot" href="#apps">See our apps</a><a class="btn btn-ghost" href="/contact">Say hello</a></div>
+<div>
+<p class="eyebrow"><i></i>Brightforge Labs LLC · Florida, USA</p>
+<h1>We forge bright ideas into <span class="accent">simple, beautiful apps.</span></h1>
+<p class="lead">Brightforge Labs is the software company behind FadeReady and the apps that come next. We build tools that help people run their work, from the barbershop to the trading desk.</p>
+<div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
+<ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>3 apps</b>1 live, 2 coming</li></ul>
+</div>
+{org_chart()}
 </div>
 </section>
 
-<section id="what">
-<div class="wrap">
-<span class="kicker">What we do</span>
-<h2>What is Brightforge Labs?</h2>
-<p class="intro">Brightforge Labs LLC is a software company in Florida, USA. We make apps for small businesses and independent pros, like barbers, salon owners and traders. Our apps are easy for anyone to use. They are fast, they look great, and they keep your data safe.</p>
-<div class="grid grid-4">{value_cards()}</div>
-</div>
-</section>
-
-<section id="apps" class="alt">
+<section id="apps">
 <div class="wrap">
 <span class="kicker">Our apps</span>
 <h2>Apps made by Brightforge Labs</h2>
-<p class="intro">Each app solves real problems for one kind of work. FadeReady is our first, and more are in the forge.</p>
-<div class="grid">
-<article class="card app featured">
-<div class="app-top"><div class="app-logo app-fr">{ICONS["scissors"]}</div><div><h3>FadeReady</h3><span class="tag">Our first app · For barbershops</span></div></div>
-<div class="app-body">
-<p>FadeReady helps barbershops run the whole day from one app. Clients book a cut or join the line from their phone. Barbers see who is next. Owners keep the books and never miss a license renewal.</p>
-<ul class="chips"><li>Booking</li><li>Live line</li><li>Barber app</li><li>Client app</li><li>Bookkeeping</li><li>License renewals</li></ul>
-<a class="more" href="https://fadeready.com/">Visit fadeready.com <span aria-hidden="true">→</span></a>
+<p class="intro">Each app does one job well for one kind of work. They all share the same promise: simple, fast, beautiful and secure.</p>
+{app_cards()}
 </div>
-</article>
-<article class="card app">
-<div class="app-top"><div class="app-logo app-tr">{ICONS["chart"]}</div><div><h3>Trading toolkit</h3><span class="tag">Coming soon · For traders</span></div></div>
-<div class="app-body">
-<p>A toolkit for traders. The calculator shows the right stop size for every trade. A trading journal and a daily journal keep track of your trades and how you feel. Prop firm traders can track what they pay for evaluations, resets and monthly fees, and every payout they get back.</p>
-<ul class="chips"><li>Stop size calculator</li><li>Futures</li><li>Forex</li><li>Stocks</li><li>Crypto</li><li>Trading journal</li><li>Daily journal</li><li>Prop firm tracker</li></ul>
-<a class="more" href="/contact">Get news when it launches <span aria-hidden="true">→</span></a>
-</div>
-</article>
-<article class="card app">
-<div class="app-top"><div class="app-logo app-sl">{ICONS["sparkle"]}</div><div><h3>Salon app</h3><span class="tag">Coming soon · For nail salons</span></div></div>
-<div class="app-body">
-<p>An app for nail salons, made with the same care as FadeReady. Easy booking for clients and a calm, simple day for the team.</p>
-<ul class="chips"><li>Booking</li><li>Client app</li><li>Team app</li></ul>
-<a class="more" href="/contact">Get news when it launches <span aria-hidden="true">→</span></a>
-</div>
-</article>
-</div>
-<p class="apps-more">And more apps on the way. Each one simple, fast, beautiful and secure.</p>
+</section>
+
+<section class="alt" id="what">
+<div class="wrap">
+<span class="kicker">Who we are</span>
+<h2>What is Brightforge Labs?</h2>
+<p class="intro">Brightforge Labs LLC is a software company in Florida, USA. It is the parent company that owns and builds our apps, so every app gets the same care, the same security and the same team behind it.</p>
+{value_list()}
 </div>
 </section>
 
@@ -296,32 +333,30 @@ def home():
 <div class="faq">{faq_html}</div>
 </div>
 </section>
-
-<section style="padding-top:0">
-<div class="wrap">
-<div class="cta">
-<h2>Have an idea or a question?</h2>
-<p>We would love to hear from you. Send us a note and a real person will write back.</p>
-<div class="btns"><a class="btn btn-hot" href="/contact">Contact us</a></div>
-</div>
-</div>
-</section>"""
-    return page("", "Brightforge Labs: simple, fast, beautiful apps for small businesses and pros",
-                DESCRIPTION, body, extra_ld=[FADEREADY, faq_ld], hero=True)
+{cta_band()}"""
+    return page("", "Brightforge Labs: the company behind FadeReady and more apps",
+                DESCRIPTION, body, extra_ld=[FADEREADY, faq_ld])
 
 
 def about():
-    body = page_hero("About us", 'We forge <span class="grad">bright ideas</span> into real products.',
-                     "Brightforge Labs is a small software company with a big goal: make great apps that anyone can use to run their work.") + f"""
+    rows = [("Legal name", "Brightforge Labs LLC"), ("Company type", "Florida limited liability company"),
+            ("Founded", "2026"), ("Founder", "Idael Fonseca Hidalgo"),
+            ("What we do", "Apps for small businesses and independent pros"),
+            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: a trading toolkit (traders) and a salon app (nail salons)'),
+            ("Subsidiary", "FadeReady LLC, owned by Brightforge Labs LLC"),
+            ("Location", "Florida, USA"), ("Email", email_link())]
+    table = "".join(f"<tr><th scope=row>{k}</th><td>{v}</td></tr>" for k, v in rows)
+    body = page_hero("About us", 'Where bright ideas are <span class="accent">forged into real products.</span>',
+                     "Brightforge Labs is the parent company that owns and builds our apps. We are small, focused and in it for the long run.") + f"""
 <section>
 <div class="narrow prose">
 <span class="kicker">Our story</span>
 <h2 style="margin-top:0">Why we started</h2>
 <p>People who run their own work are busy. Barbers, nail techs, shop owners and traders have no time to fight their tools. But the apps they use are often slow, confusing or ugly.</p>
 <p>We thought they deserved better. So in 2026, Idael Fonseca Hidalgo started <strong>Brightforge Labs LLC</strong>, a software company in Florida, USA.</p>
-<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>. It helps barbershops with booking, the live line, bookkeeping and license renewals. FadeReady LLC is owned by Brightforge Labs. Next comes a trading toolkit for traders, with a stop size calculator, trading and daily journals and a prop firm tracker. An app for nail salons is on the way too.</p>
+<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. FadeReady LLC is owned by Brightforge Labs. Next come a trading toolkit for traders and a salon app that brings everything FadeReady does to nail salons.</p>
 <h2>What our name means</h2>
-<p>A forge is a hot fire where metal is shaped into strong tools. <strong>Brightforge</strong> is a place where bright ideas are shaped into real products. <strong>Labs</strong> means we never stop trying new things.</p>
+<p>A forge is a hot fire where metal is shaped into strong tools. <strong>Brightforge</strong> is a place where bright ideas are shaped into real products. <strong>Labs</strong> means we never stop testing and improving.</p>
 </div>
 </section>
 
@@ -329,8 +364,8 @@ def about():
 <div class="wrap">
 <span class="kicker">Our values</span>
 <h2>Four promises in every app</h2>
-<p class="intro">Every app we make has to pass these four tests before it ships.</p>
-<div class="grid grid-4">{value_cards()}</div>
+<p class="intro">Every app we make has to keep these four promises before it ships.</p>
+{value_list()}
 </div>
 </section>
 
@@ -338,27 +373,19 @@ def about():
 <div class="narrow prose">
 <span class="kicker">Company facts</span>
 <h2 style="margin-top:0">Brightforge Labs at a glance</h2>
-<ul>
-<li><strong>Legal name:</strong> Brightforge Labs LLC</li>
-<li><strong>Type:</strong> Florida limited liability company</li>
-<li><strong>Founded:</strong> 2026</li>
-<li><strong>Founder:</strong> Idael Fonseca Hidalgo</li>
-<li><strong>What we do:</strong> apps for small businesses and independent pros</li>
-<li><strong>Our apps:</strong> <a href="https://fadeready.com/">FadeReady</a> (barbershops). Coming soon: a trading toolkit (traders) and a salon app (nail salons)</li>
-<li><strong>Location:</strong> Florida, USA</li>
-<li><strong>Email:</strong> {email_link()}</li>
-</ul>
+<table class="facts-table">{table}</table>
 </div>
-</section>"""
-    return page("about", "About Brightforge Labs: who we are and what we believe",
+</section>
+{cta_band()}"""
+    return page("about", "About Brightforge Labs: our story, values and company facts",
                 "Brightforge Labs LLC is a Florida software company founded in 2026 by Idael Fonseca Hidalgo. "
-                "We make simple, fast, beautiful and secure apps for small businesses and independent pros, like FadeReady.",
+                "It owns and builds simple, fast, beautiful and secure apps, like FadeReady.",
                 body, current="About", page_type="AboutPage")
 
 
 def contact():
-    body = page_hero("Contact", 'Say <span class="grad">hello</span>.',
-                     "Questions, ideas or business matters? Send us an email. A real person reads every message.") + f"""
+    body = page_hero("Contact", 'Talk to <span class="accent">Brightforge Labs.</span>',
+                     "Questions, partnerships, press or business matters? Send us an email. A real person reads every message.") + f"""
 <section>
 <div class="narrow prose">
 <h2 style="margin-top:0">Email us</h2>
@@ -366,8 +393,8 @@ def contact():
 <p>We usually reply within one or two business days.</p>
 <h2>Where we are</h2>
 <p>Brightforge Labs LLC is based in Florida, USA. We work online, so we can help you from anywhere.</p>
-<h2>Need help with FadeReady?</h2>
-<p>Visit <a href="https://fadeready.com/">fadeready.com</a> for help with the app, or email us and we will point you to the right place.</p>
+<h2>Need help with an app?</h2>
+<p>For FadeReady, visit <a href="https://fadeready.com/">fadeready.com</a>. For anything else, email us and we will point you to the right place.</p>
 </div>
 </section>"""
     return page("contact", "Contact Brightforge Labs",
@@ -500,9 +527,9 @@ def terms():
 
 
 def not_found():
-    body = page_hero("Error 404", 'This page got <span class="grad">lost in the forge</span>.',
-                     "The page you want is not here. Let's get you back home.") + """
-<section><div class="narrow"><p><a class="btn btn-hot" href="/">Go to the home page</a></p></div></section>"""
+    body = page_hero("Error 404", 'This page is <span class="accent">not here.</span>',
+                     "The page you want may have moved. Let's get you back home.") + """
+<section><div class="narrow"><p><a class="btn btn-primary" href="/">Go to the home page</a></p></div></section>"""
     html = page("404", "Page not found | Brightforge Labs", "This page could not be found.", body)
     return html.replace('<link rel="canonical" href="https://brightforgelabs.app/404">',
                         '<meta name="robots" content="noindex">')
