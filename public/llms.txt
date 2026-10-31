@@ -18,7 +18,7 @@
 
 - [FadeReady](https://fadeready.com/): an app for barbershops. It includes online booking, a live line (walk-in queue), a barber app, a client app, bookkeeping, and license renewal reminders. FadeReady is made, owned and run by Brightforge Labs LLC.
 - Trading toolkit (coming soon): an app for traders. It has a stop size calculator for four markets (futures, forex, stocks and crypto), a built-in trading journal, a daily journal for notes and feelings, and a prop firm tracker for evaluations, resets, monthly fees and payouts, so traders can see what they spend on prop firms and what they get back. It is a tool for planning and record-keeping, not financial advice.
-- Nail Signature (coming soon, nailsignature.com): an app for nail salons that does everything FadeReady does (booking, live line, nail tech and client apps, bookkeeping, license renewals), made for nail salons.
+- Nail Signature (coming soon, https://nailsignature.com): an app for nail salons that does everything FadeReady does (booking, live line, nail tech and client apps, bookkeeping, license renewals), made for nail salons.
 
 ## Common questions
 

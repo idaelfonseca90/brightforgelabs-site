@@ -81,7 +81,7 @@ ORG = {
                    "Prop firm expense and payout tracking"],
     # Every app and website is owned directly by Brightforge Labs LLC (no separate LLC per app).
     "brand": [{"@type": "Brand", "name": "FadeReady", "url": "https://fadeready.com/"},
-              {"@type": "Brand", "name": "Nail Signature"}],
+              {"@type": "Brand", "name": "Nail Signature", "url": "https://nailsignature.com/"}],
     # Add social profile links here as they are created, e.g. "https://www.linkedin.com/company/..."
     "sameAs": [],
 }
@@ -110,7 +110,7 @@ APPS = [
     {"key": "sl", "slug": "nail-signature", "name": "Nail Signature", "ref": "Nail Signature", "for": "For nail salons", "status": "soon", "icon": "sparkle",
      "text": "Everything FadeReady does for barbershops, made for nail salons.",
      "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
-     "href": "/contact", "link": "Get launch news", "org": "In development"},
+     "href": "https://nailsignature.com/", "link": "Get launch news", "org": "In development"},
 ]
 STATUS = {"live": ('p-live', "Live"), "soon": ('p-soon', "Coming soon")}
 
@@ -660,7 +660,7 @@ APP_DETAILS = {
         "description": ("Nail Signature by Brightforge Labs (coming soon) brings everything FadeReady does to nail salons: "
                         "online booking, a live line, nail tech and client apps, bookkeeping and license reminders."),
         "h1": 'Nail Signature, the app made <span class="accent">for nail salons.</span>',
-        "lead": "Everything FadeReady does for barbershops, made for nail salons: booking, the live line, team and client apps, bookkeeping and license reminders. Coming soon.",
+        "lead": 'Everything FadeReady does for barbershops, made for nail salons: booking, the live line, team and client apps, bookkeeping and license reminders. Coming soon at <a href="https://nailsignature.com/">nailsignature.com</a>.',
         "who": "Nail Signature is for nail salon owners, nail techs and their clients, from a single-desk studio to a busy salon.",
         "sections": [
             ("Online booking", "Clients choose a nail tech, a service and a time from their phone, day or night."),
@@ -674,7 +674,7 @@ APP_DETAILS = {
             ("When will Nail Signature be available?", "It is in development and will launch at nailsignature.com. Email hello@brightforgelabs.app to hear when it launches."),
             ("Who makes Nail Signature?", "Brightforge Labs LLC, the Florida software company that also makes FadeReady."),
         ],
-        "cta": ("Get launch news", "/contact"),
+        "cta": ("Visit nailsignature.com", "https://nailsignature.com/"),
         "category": "BusinessApplication",
     },
 }
@@ -711,7 +711,7 @@ def app_page(a):
 </section>
 {cta_band()}"""
     app_ld = {"@type": "SoftwareApplication", "@id": f"{url}#app", "name": a["name"],
-              "url": a["href"] if a["status"] == "live" else url,
+              "url": a["href"] if a["href"].startswith("http") else url,
               "applicationCategory": d["category"], "operatingSystem": "iOS, Android, Web",
               "description": d["description"], "featureList": [t for t, _ in d["sections"]],
               "author": {"@id": f"{SITE}/#organization"}, "publisher": {"@id": f"{SITE}/#organization"}}
