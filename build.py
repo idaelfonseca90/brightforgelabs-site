@@ -101,10 +101,10 @@ FADEREADY = {
 }
 
 APPS = [
-    {"key": "fr", "slug": "fadeready", "name": "FadeReady", "ref": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
+    {"key": "fr", "slug": "fadeready", "name": "FadeReady", "ref": "FadeReady", "for": "For barbershops", "status": "soon", "icon": "scissors",
      "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
      "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
-     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Live at fadeready.com"},
+     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Waitlist open"},
     {"key": "tr", "slug": "sizeguard", "name": "SizeGuard", "ref": "SizeGuard", "for": "For traders", "status": "soon", "icon": "chart",
      "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
      "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
@@ -130,7 +130,7 @@ FAQ = [
      "booking, the live line, barber and client apps, bookkeeping, and license renewals. "
      "FadeReady and fadeready.com are owned and run by Brightforge Labs LLC."),
     ("What apps does Brightforge Labs make?",
-     "FadeReady for barbershops is live. LaneTally, truck dispatch and trucking accounting software, is in early access. Coming soon: SizeGuard, a trading toolkit with a stop size calculator "
+     "All four are coming soon: FadeReady for barbershops and LaneTally, truck dispatch and trucking accounting software, both with waiting lists open, plus SizeGuard, a trading toolkit with a stop size calculator "
      "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
      "and Nail Signature, an app for nail salons that does everything FadeReady does (nailsignature.com)."),
     ("Who started Brightforge Labs?",
@@ -392,7 +392,7 @@ def home():
 <h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span>barbershops.</span><span>traders.</span><span>nail salons.</span><span>trucking.</span></span><span class="sr">barbershops, traders, nail salons and trucking.</span></span></h1>
 <p class="lead">We are the software company behind <b>FadeReady</b>. We build simple, fast and beautiful apps that help people run their work.</p>
 <div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
-<ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>4 apps</b>1 live, 3 coming</li></ul>
+<ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>4 apps</b>Coming soon</li></ul>
 </div>
 {forge()}
 </div>
@@ -447,7 +447,7 @@ def about():
     rows = [("Legal name", "Brightforge Labs LLC"), ("Company type", "Florida limited liability company"),
             ("Founded", "2026"), ("Founder", "Idael Fonseca Hidalgo"),
             ("What we do", "Apps for small businesses and independent pros"),
-            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live), <a href="https://lanetally.com/">LaneTally</a> (trucking, early access). Coming soon: <a href="https://sizeguard.com/">SizeGuard</a> (traders) and <a href="https://nailsignature.com/">Nail Signature</a> (nail salons)'),
+            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops), <a href="https://lanetally.com/">LaneTally</a> (trucking), <a href="https://sizeguard.com/">SizeGuard</a> (traders) and <a href="https://nailsignature.com/">Nail Signature</a> (nail salons)'),
             ("Ownership", "All our apps and websites, including FadeReady and fadeready.com, are owned by Brightforge Labs LLC"),
             ("Location", "Florida, USA"), ("Email", email_link())]
     table = "".join(f"<tr><th scope=row>{k}</th><td>{v}</td></tr>" for k, v in rows)
@@ -637,7 +637,7 @@ APP_DETAILS = {
         "description": ("FadeReady is the barbershop app by Brightforge Labs. Clients book or join the live line "
                         "from their phone, barbers see who is next, and owners keep the books and track licenses."),
         "h1": 'FadeReady, the app that <span class="accent">runs the barbershop day.</span>',
-        "lead": "Booking, the live line, barber and client apps, bookkeeping and license reminders, all in one app. Live now at fadeready.com.",
+        "lead": "Booking, the live line, barber and client apps, bookkeeping and license reminders, all in one app. Coming soon, and the waiting list is open at <a href=\"https://fadeready.com/\">fadeready.com</a>.",
         "who": "FadeReady is for barbershop owners, barbers and their clients. It works for a one-chair shop and for a busy shop with a full team.",
         "sections": [
             ("Online booking", "Clients pick a barber, a service and a time from their phone, any time of day. The shop gets fewer calls and fewer no-shows."),
@@ -649,7 +649,7 @@ APP_DETAILS = {
         "faq": [
             ("What is FadeReady?", "FadeReady is an app for barbershops. It handles online booking, a live line for walk-ins, a barber app, a client app, bookkeeping and license renewal reminders."),
             ("Who makes FadeReady?", "FadeReady is made, owned and run by Brightforge Labs LLC, a software company in Florida, USA."),
-            ("Where can I get FadeReady?", "Visit fadeready.com to learn more and get started."),
+            ("When will FadeReady be available?", "FadeReady is coming soon. Join the waiting list at fadeready.com to get early access and the founding deal."),
         ],
         "cta": ("Visit fadeready.com", "https://fadeready.com/"),
         "category": "BusinessApplication",

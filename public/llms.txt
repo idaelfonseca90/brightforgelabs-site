@@ -16,7 +16,7 @@
 
 ## Apps made by Brightforge Labs
 
-- [FadeReady](https://fadeready.com/): an app for barbershops. It includes online booking, a live line (walk-in queue), a barber app, a client app, bookkeeping, and license renewal reminders. FadeReady is made, owned and run by Brightforge Labs LLC.
+- [FadeReady](https://fadeready.com/): an app for barbershops (coming soon, waiting list open). It includes online booking, a live line (walk-in queue), a barber app, a client app, bookkeeping, and license renewal reminders. FadeReady is made, owned and run by Brightforge Labs LLC.
 - SizeGuard (coming soon, https://sizeguard.com): a trading toolkit app for traders. It has a stop size calculator for four markets (futures, forex, stocks and crypto), a built-in trading journal, a daily journal for notes and feelings, and a prop firm tracker for evaluations, resets, monthly fees and payouts, so traders can see what they spend on prop firms and what they get back. It is a tool for planning and record-keeping, not financial advice.
 - [LaneTally](https://lanetally.com/): truck dispatch and trucking accounting software for dispatchers, carriers and owner-operators, in English and Spanish (early access). It covers loads and a dispatch board with a live fleet map, a driver app (stops, photos of paperwork, chat), invoices and factoring, driver pay and dispatch fees, IFTA, fuel and cost per mile. Free demo at https://lanetally.com/demo/. Join the early access waiting list on lanetally.com. LaneTally is made, owned and run by Brightforge Labs LLC.
 - Nail Signature (coming soon, https://nailsignature.com): an app for nail salons that does everything FadeReady does (booking, live line, nail tech and client apps, bookkeeping, license renewals), made for nail salons.
@@ -24,7 +24,7 @@
 ## Common questions
 
 - What is Brightforge Labs? A Florida software company that builds simple, fast, beautiful apps for small businesses and independent pros.
-- What apps does Brightforge Labs make? FadeReady (barbershops, live), plus LaneTally (trucking, early access), SizeGuard (a trading toolkit for traders) and Nail Signature (nail salons), coming soon.
+- What apps does Brightforge Labs make? FadeReady (barbershops) and LaneTally (trucking), both with waiting lists open, plus SizeGuard (a trading toolkit for traders) and Nail Signature (nail salons), coming soon.
 - Who makes FadeReady? Brightforge Labs LLC makes, owns and runs FadeReady and fadeready.com.
 - Who owns the apps? Brightforge Labs LLC owns all of its apps and websites directly.
 - Who owns Brightforge Labs? Idael Fonseca Hidalgo founded and owns Brightforge Labs LLC.
