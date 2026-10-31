@@ -79,9 +79,8 @@ ORG = {
                    "Barbershop booking software", "Salon software",
                    "Trading tools", "Position size and stop size calculators", "Trading journals",
                    "Prop firm expense and payout tracking"],
-    "subOrganization": {"@type": "Organization", "@id": "https://fadeready.com/#organization",
-                        "name": "FadeReady", "legalName": "FadeReady LLC",
-                        "url": "https://fadeready.com/"},
+    # Every app and website is owned directly by Brightforge Labs LLC (no separate LLC per app).
+    "brand": [{"@type": "Brand", "name": "FadeReady", "url": "https://fadeready.com/"}],
     # Add social profile links here as they are created, e.g. "https://www.linkedin.com/company/..."
     "sameAs": [],
 }
@@ -102,7 +101,7 @@ APPS = [
     {"key": "fr", "name": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
      "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
      "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
-     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "FadeReady LLC"},
+     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Live at fadeready.com"},
     {"key": "tr", "name": "Trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
      "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
      "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
@@ -122,7 +121,7 @@ FAQ = [
     ("Who makes FadeReady?",
      "FadeReady is made by Brightforge Labs. FadeReady is an app for barbershops. It handles "
      "booking, the live line, barber and client apps, bookkeeping, and license renewals. "
-     "FadeReady LLC is owned by Brightforge Labs LLC."),
+     "FadeReady and fadeready.com are owned and run by Brightforge Labs LLC."),
     ("What apps does Brightforge Labs make?",
      "FadeReady for barbershops is live. Coming soon: a trading toolkit with a stop size calculator "
      "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
@@ -209,7 +208,7 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 <div class="foot-grid">
 <div class="foot-brand">
 <a class="brand" href="/" aria-label="Brightforge Labs home">{mark("ft")}<span>Brightforge <b>Labs</b></span></a>
-<p>Brightforge Labs LLC is a software company in Florida, USA. We own and build simple, fast, beautiful apps.</p>
+<p>Brightforge Labs LLC is a software company in Florida, USA. We own and build all our apps, including FadeReady.</p>
 </div>
 <div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li>{email_link()}</li></ul></div>
 <div><h2>Apps</h2><ul>{foot_apps}</ul></div>
@@ -427,7 +426,7 @@ def about():
             ("Founded", "2026"), ("Founder", "Idael Fonseca Hidalgo"),
             ("What we do", "Apps for small businesses and independent pros"),
             ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: a trading toolkit (traders) and a salon app (nail salons)'),
-            ("Subsidiary", "FadeReady LLC, owned by Brightforge Labs LLC"),
+            ("Ownership", "All our apps and websites, including FadeReady and fadeready.com, are owned by Brightforge Labs LLC"),
             ("Location", "Florida, USA"), ("Email", email_link())]
     table = "".join(f"<tr><th scope=row>{k}</th><td>{v}</td></tr>" for k, v in rows)
     body = page_hero("About us", 'Where bright ideas are <span class="accent">forged into real products.</span>',
@@ -438,7 +437,7 @@ def about():
 <h2 style="margin-top:0">Why we started</h2>
 <p>People who run their own work are busy. Barbers, nail techs, shop owners and traders have no time to fight their tools. But the apps they use are often slow, confusing or ugly.</p>
 <p>We thought they deserved better. So in 2026, Idael Fonseca Hidalgo started <strong>Brightforge Labs LLC</strong>, a software company in Florida, USA.</p>
-<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. FadeReady LLC is owned by Brightforge Labs. Next come a trading toolkit for traders and a salon app that brings everything FadeReady does to nail salons.</p>
+<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come a trading toolkit for traders and a salon app that brings everything FadeReady does to nail salons.</p>
 <h2>What our name means</h2>
 <p>A forge is a hot fire where metal is shaped into strong tools. <strong>Brightforge</strong> is a place where bright ideas are shaped into real products. <strong>Labs</strong> means we never stop testing and improving.</p>
 </div>
@@ -499,7 +498,7 @@ def legal(slug, title, h1, description, sections):
 def privacy():
     return legal("privacy", "Privacy Policy | Brightforge Labs", "Privacy Policy",
                  "How Brightforge Labs LLC collects, uses and protects information on this website and in our apps, in plain language.",
-                 f"""<p>This policy explains, in plain words, what information <strong>Brightforge Labs LLC</strong> ("Brightforge Labs", "we", "us") collects, why, and what choices you have. It covers this website (brightforgelabs.app) and our apps. Some apps, like FadeReady, may also have their own privacy policy. If they do, that policy explains the details for that app.</p>
+                 f"""<p>This policy explains, in plain words, what information <strong>Brightforge Labs LLC</strong> ("Brightforge Labs", "we", "us") collects, why, and what choices you have. It covers this website (brightforgelabs.app) and all the apps and websites we own, including FadeReady (fadeready.com). Some apps, like FadeReady, may also have their own privacy policy. If they do, that policy explains the details for that app.</p>
 
 <h2>The short version</h2>
 <ul>
@@ -562,7 +561,7 @@ def privacy():
 def terms():
     return legal("terms", "Terms of Use | Brightforge Labs", "Terms of Use",
                  "The plain-language terms for using the Brightforge Labs LLC website and apps.",
-                 f"""<p>These terms are the rules for using the website and apps made by <strong>Brightforge Labs LLC</strong> ("Brightforge Labs", "we", "us"). By using them, you agree to these terms. Some apps may have extra terms. If they do, those terms apply too.</p>
+                 f"""<p>These terms are the rules for using the websites and apps owned by <strong>Brightforge Labs LLC</strong> ("Brightforge Labs", "we", "us"), including FadeReady (fadeready.com). By using them, you agree to these terms. Some apps may have extra terms. If they do, those terms apply too.</p>
 
 <h2>1. Using our website and apps</h2>
 <p>You may use our website and apps for lawful purposes. Please do not:</p>
