@@ -291,11 +291,11 @@ def forge():
     o = 200 - 32 * m
     tiles = [("fr", "o1", "scissors"), ("tr", "o2", "chart"), ("sl", "o3", "sparkle")]
     cards = "".join(
-        f'<div class="orb {pos}">{app_logo(k, 36)}<div><b>{a["name"]}</b>{pill(a["status"])}</div></div>'
+        f'<a class="orb {pos}" href="#{k}" aria-label="{a["name"]}: see the app">{app_logo(k, 36)}<div><b>{a["name"]}</b>{pill(a["status"])}</div></a>'
         for (k, pos, ic), a in zip(tiles, APPS))
-    return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, SizeGuard and Nail Signature around it">
+    return f"""<div class="forge">
 <div class="halo" aria-hidden="true"></div>
-<svg class="emblem" viewBox="0 0 400 400" aria-hidden="true">
+<svg class="emblem" viewBox="0 0 400 400" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, linked to its apps FadeReady, SizeGuard and Nail Signature">
 <defs>
 <linearGradient id="fg-anvil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB03A"/><stop offset="1" stop-color="#FF4A1C"/></linearGradient>
 <linearGradient id="fg-spark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF6C8"/><stop offset="1" stop-color="#FFB400"/></linearGradient>
