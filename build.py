@@ -98,15 +98,15 @@ FADEREADY = {
 }
 
 APPS = [
-    {"key": "fr", "name": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
+    {"key": "fr", "slug": "fadeready", "name": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
      "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
      "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
      "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Live at fadeready.com"},
-    {"key": "tr", "name": "Trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
+    {"key": "tr", "slug": "trading-toolkit", "name": "Trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
      "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
      "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
      "href": "/contact", "link": "Get launch news", "org": "In development"},
-    {"key": "sl", "name": "Salon app", "for": "For nail salons", "status": "soon", "icon": "sparkle",
+    {"key": "sl", "slug": "salon-app", "name": "Salon app", "for": "For nail salons", "status": "soon", "icon": "sparkle",
      "text": "Everything FadeReady does for barbershops, made for nail salons.",
      "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
      "href": "/contact", "link": "Get launch news", "org": "In development"},
@@ -158,8 +158,8 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
         f'<li><a href="{href}"{" aria-current=page" if label == current else ""}>{label}</a></li>'
         for href, label in NAV) + '<li><a class="nav-cta" href="/contact">Contact us</a></li>'
     foot_apps = "".join(
-        f'<li><a href="{a["href"]}">{a["name"]}</a></li>' if a["status"] == "live"
-        else f'<li>{a["name"]} <small>(soon)</small></li>' for a in APPS)
+        f'<li><a href="/{a["slug"]}">{a["name"]}</a>{"" if a["status"] == "live" else " <small>(soon)</small>"}</li>'
+        for a in APPS)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -260,7 +260,7 @@ def app_cards():
 <div class="app-top"><div class="tile t-{a['key']}">{ICONS[a['icon']]}</div><div><h3>{a['name']}</h3><span class="for">{a['for']}</span></div>{pill(a['status'])}</div>
 <p>{a['text']}</p>
 <ul class="feat">{feats}</ul>
-<a class="more" href="{a['href']}">{a['link']} <span aria-hidden="true">→</span></a>
+<a class="more" href="/{a['slug']}">Learn more about {a['name'] if a['status'] == 'live' else 'the ' + a['name'].lower()} <span aria-hidden="true">→</span></a>
 </article>""")
     return '<div class="apps">' + "".join(out) + "</div>"
 
@@ -609,6 +609,123 @@ def terms():
 <p>Questions about these terms? Email {email_link()}.</p>""")
 
 
+APP_DETAILS = {
+    "fr": {
+        "title": "FadeReady: the barbershop app for booking, the live line and bookkeeping",
+        "description": ("FadeReady is the barbershop app by Brightforge Labs. Clients book or join the live line "
+                        "from their phone, barbers see who is next, and owners keep the books and track licenses."),
+        "h1": 'FadeReady, the app that <span class="accent">runs the barbershop day.</span>',
+        "lead": "Booking, the live line, barber and client apps, bookkeeping and license reminders, all in one app. Live now at fadeready.com.",
+        "who": "FadeReady is for barbershop owners, barbers and their clients. It works for a one-chair shop and for a busy shop with a full team.",
+        "sections": [
+            ("Online booking", "Clients pick a barber, a service and a time from their phone, any time of day. The shop gets fewer calls and fewer no-shows."),
+            ("A live line for walk-ins", "Walk-in clients join the line from their phone and see their place in real time, so they can wait anywhere instead of in the shop."),
+            ("A barber app and a client app", "Barbers see who is next, their day and their earnings. Clients see their bookings, their place in line and their favorite barbers."),
+            ("Bookkeeping and barber pay", "Owners see sales, expenses and what each barber earned, without a separate spreadsheet."),
+            ("License renewal reminders", "FadeReady reminds the shop before barber and shop licenses expire, so nobody gets caught out."),
+        ],
+        "faq": [
+            ("What is FadeReady?", "FadeReady is an app for barbershops. It handles online booking, a live line for walk-ins, a barber app, a client app, bookkeeping and license renewal reminders."),
+            ("Who makes FadeReady?", "FadeReady is made, owned and run by Brightforge Labs LLC, a software company in Florida, USA."),
+            ("Where can I get FadeReady?", "Visit fadeready.com to learn more and get started."),
+        ],
+        "cta": ("Visit fadeready.com", "https://fadeready.com/"),
+        "category": "BusinessApplication",
+    },
+    "tr": {
+        "title": "Trading toolkit: stop size calculator, trading journal and prop firm tracker",
+        "description": ("The Brightforge Labs trading toolkit (coming soon): a stop size calculator for futures, forex, "
+                        "stocks and crypto, a trading journal, a daily journal and a prop firm tracker for fees and payouts."),
+        "h1": 'A trading toolkit to <span class="accent">plan, record and review.</span>',
+        "lead": "A stop size calculator for four markets, a trading journal, a daily journal and a prop firm tracker, in one app. Coming soon.",
+        "who": "The trading toolkit is for day traders, swing traders and prop firm traders who trade futures, forex, stocks or crypto and want to manage risk and keep honest records.",
+        "sections": [
+            ("Stop size calculator for 4 markets", "Enter your account size, your risk and your stop, and see the right position size for futures, forex, stocks or crypto. No mental math under pressure."),
+            ("Trading journal", "Log every trade with entry, exit, size, result and notes, then review what works and what doesn't."),
+            ("Daily journal", "Write down your plan, your mood and your lessons each day, so you can spot the habits behind good and bad days."),
+            ("Prop firm tracker", "Track every evaluation, reset and monthly fee across prop firms in one place."),
+            ("Payout tracking", "Record every payout next to what you spent, so you see what you really earn from prop firms."),
+        ],
+        "faq": [
+            ("What is the Brightforge Labs trading toolkit?", "It is an app for traders with a stop size calculator for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker for evaluations, resets, fees and payouts."),
+            ("Is the trading toolkit financial advice?", "No. It is a tool for planning and record-keeping. It does not tell you what to buy or sell, and trading carries risk."),
+            ("When will the trading toolkit be available?", "It is in development. Email hello@brightforgelabs.app to hear when it launches."),
+        ],
+        "cta": ("Get launch news", "/contact"),
+        "category": "FinanceApplication",
+    },
+    "sl": {
+        "title": "Salon app for nail salons: booking, live line and bookkeeping",
+        "description": ("The Brightforge Labs salon app (coming soon) brings everything FadeReady does to nail salons: "
+                        "online booking, a live line, nail tech and client apps, bookkeeping and license reminders."),
+        "h1": 'The salon app, made <span class="accent">for nail salons.</span>',
+        "lead": "Everything FadeReady does for barbershops, made for nail salons: booking, the live line, team and client apps, bookkeeping and license reminders. Coming soon.",
+        "who": "The salon app is for nail salon owners, nail techs and their clients, from a single-desk studio to a busy salon.",
+        "sections": [
+            ("Online booking", "Clients choose a nail tech, a service and a time from their phone, day or night."),
+            ("A live line for walk-ins", "Walk-in clients join the line from their phone and see when it is their turn."),
+            ("A nail tech app and a client app", "Nail techs see their day and their earnings. Clients see their bookings and their place in line."),
+            ("Bookkeeping and team pay", "Owners see sales, expenses and what each team member earned in one place."),
+            ("License renewal reminders", "Get a reminder before nail tech and salon licenses expire."),
+        ],
+        "faq": [
+            ("What is the Brightforge Labs salon app?", "It is an app for nail salons that does everything FadeReady does for barbershops: online booking, a live line, nail tech and client apps, bookkeeping and license renewal reminders."),
+            ("When will the salon app be available?", "It is in development. Email hello@brightforgelabs.app to hear when it launches."),
+            ("Who makes the salon app?", "Brightforge Labs LLC, the Florida software company that also makes FadeReady."),
+        ],
+        "cta": ("Get launch news", "/contact"),
+        "category": "BusinessApplication",
+    },
+}
+
+
+def app_page(a):
+    d = APP_DETAILS[a["key"]]
+    url = f"{SITE}/{a['slug']}"
+    feats = "".join(f"<h3>{t}</h3><p>{x}</p>" for t, x in d["sections"])
+    faq_html = "".join(f"<details><summary>{q}</summary><p>{x.replace(EMAIL, email_link())}</p></details>"
+                       for q, x in d["faq"])
+    label, href = d["cta"]
+    status = "Live now" if a["status"] == "live" else "Coming soon"
+    body = page_hero(f"{a['for']} · {status}", d["h1"], d["lead"]) + f"""
+<section>
+<div class="narrow prose">
+<span class="kicker">What it does</span>
+<h2 style="margin-top:0">{a['name']} features</h2>
+{feats}
+<h2>Who it is for</h2>
+<p>{d['who']}</p>
+<h2>Who makes it</h2>
+<p>{a['name'] if a['status'] == 'live' else 'The ' + a['name'].lower()} is made, owned and run by <a href="/about">Brightforge Labs LLC</a>, a software company in Florida, USA. Like every app we make, it is simple, fast, beautiful and secure.</p>
+<p><a class="btn btn-primary" href="{href}">{label}</a></p>
+</div>
+</section>
+
+<section class="alt">
+<div class="narrow">
+<span class="kicker">Quick answers</span>
+<h2>{a['name']} questions</h2>
+<div class="faq">{faq_html}</div>
+</div>
+</section>
+{cta_band()}"""
+    app_ld = {"@type": "SoftwareApplication", "@id": f"{url}#app", "name": a["name"],
+              "url": a["href"] if a["status"] == "live" else url,
+              "applicationCategory": d["category"], "operatingSystem": "iOS, Android, Web",
+              "description": d["description"], "featureList": [t for t, _ in d["sections"]],
+              "author": {"@id": f"{SITE}/#organization"}, "publisher": {"@id": f"{SITE}/#organization"}}
+    if a["status"] != "live":
+        app_ld["releaseNotes"] = "In development, coming soon."
+    faq_ld = {"@type": "FAQPage", "@id": f"{url}#faq",
+              "mainEntity": [{"@type": "Question", "name": q,
+                              "acceptedAnswer": {"@type": "Answer", "text": x}} for q, x in d["faq"]]}
+    crumbs = {"@type": "BreadcrumbList", "@id": f"{url}#breadcrumb", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
+        {"@type": "ListItem", "position": 2, "name": a["name"], "item": url}]}
+    return page(a["slug"], d["title"], d["description"], body, current="Apps",
+                extra_ld=[app_ld, faq_ld, crumbs])
+
+
 def not_found():
     body = page_hero("Error 404", 'This page is <span class="accent">not here.</span>',
                      "The page you want may have moved. Let's get you back home.") + """
@@ -624,11 +741,13 @@ def tidy(html):
 
 def main():
     pages = {"index.html": home(), "about.html": about(), "contact.html": contact(),
-             "privacy.html": privacy(), "terms.html": terms(), "404.html": not_found()}
+             "privacy.html": privacy(), "terms.html": terms(), "404.html": not_found(),
+             **{f"{a['slug']}.html": app_page(a) for a in APPS}}
     for name, html in pages.items():
         (OUT / name).write_text(tidy(html))
-    urls = ["", "about", "contact", "privacy", "terms"]
-    prio = {"": "1.0", "about": "0.8", "contact": "0.7"}
+    urls = ["", *[a["slug"] for a in APPS], "about", "contact", "privacy", "terms"]
+    prio = {"": "1.0", "fadeready": "0.9", "trading-toolkit": "0.8", "salon-app": "0.8",
+            "about": "0.8", "contact": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:

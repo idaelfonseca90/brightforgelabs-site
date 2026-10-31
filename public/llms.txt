@@ -31,6 +31,9 @@
 ## Pages
 
 - [Home](https://brightforgelabs.app/): what Brightforge Labs does and its apps
+- [FadeReady](https://brightforgelabs.app/fadeready): the barbershop app, features and questions
+- [Trading toolkit](https://brightforgelabs.app/trading-toolkit): stop size calculator, trading journal, daily journal and prop firm tracker (coming soon)
+- [Salon app](https://brightforgelabs.app/salon-app): the nail salon app (coming soon)
 - [About](https://brightforgelabs.app/about): company story, values and facts
 - [Contact](https://brightforgelabs.app/contact): email hello@brightforgelabs.app
 - [Privacy Policy](https://brightforgelabs.app/privacy)
