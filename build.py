@@ -15,8 +15,8 @@ OUT = ROOT / "public"
 
 SITE = "https://brightforgelabs.app"
 EMAIL = "hello@brightforgelabs.app"
-UPDATED = "2026-10-25"
-UPDATED_TEXT = "October 25, 2026"
+UPDATED = "2026-10-31"
+UPDATED_TEXT = "October 31, 2026"
 DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady. "
                "We build simple, fast, beautiful apps for small businesses and independent pros, "
                "with a trading toolkit and a salon app coming soon.")
