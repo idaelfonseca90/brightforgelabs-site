@@ -79,3 +79,18 @@
   }
   window.addEventListener('load', function () { setTimeout(start, 600); });
 })();
+
+// Hero app badges: always jump to the app's card, even on a repeat tap, and replay its highlight.
+(function () {
+  document.querySelectorAll('a.orb[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var card = document.querySelector(a.getAttribute('href'));
+      if (!card) return;
+      e.preventDefault();
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', a.getAttribute('href'));
+      card.classList.remove('spot'); void card.offsetWidth; card.classList.add('spot');
+      card.setAttribute('tabindex', '-1'); card.focus({ preventScroll: true });
+    });
+  });
+})();

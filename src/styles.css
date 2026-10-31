@@ -284,6 +284,9 @@ section{padding:clamp(64px,9vw,108px) 0}
 a.orb{color:inherit;text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s}
 a.orb:hover,a.orb:focus-visible{border-color:rgba(255,170,80,.6);background:rgba(24,30,48,.95);box-shadow:0 14px 34px rgba(0,0,0,.35),0 0 0 3px rgba(255,138,61,.25)}
 a.orb:focus-visible{outline:2px solid #ffb03a;outline-offset:3px}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.app:target{animation:spot 1.8s ease-out}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.app:target,.app.spot{animation:spot 1.8s ease-out}}
 .app{scroll-margin-top:96px}
 @keyframes spot{0%,35%{box-shadow:0 0 0 3px var(--accent),0 18px 40px color-mix(in srgb,var(--accent) 22%,transparent)}100%{box-shadow:0 0 0 0 transparent}}
+a.orb{touch-action:manipulation}
+a.orb::before{content:"";position:absolute;inset:-14px -8px}
+a.orb:hover,a.orb:focus,a.orb:active{animation-play-state:paused}
