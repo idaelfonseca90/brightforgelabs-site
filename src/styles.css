@@ -295,3 +295,5 @@ a.orb:hover,a.orb:focus,a.orb:active{animation-play-state:paused}
 .orb .pill{font-size:.6rem;padding:1px 6px;gap:4px}
 .orb .pill::before{width:5px;height:5px}
 @media (max-width:420px){.orb{padding:5px 8px 5px 5px;gap:6px}.orb b{font-size:.72rem}.orb .pill{font-size:.56rem;padding:0 5px}}
+@media (max-width:900px) and (min-width:561px){.o1{left:-20%}.o2{right:-24%;top:46%}.o3{left:-16%}.o4{right:-20%}}
+@media (max-width:560px){.o2{right:-3%;top:60%}.o4{right:-3%}.o1{left:-2%}}
