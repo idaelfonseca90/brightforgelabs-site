@@ -19,7 +19,7 @@ UPDATED = "2026-10-31"
 UPDATED_TEXT = "October 31, 2026"
 DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady. "
                "We build simple, fast, beautiful apps for small businesses and independent pros, "
-               "with SizeGuard, a trading toolkit, and Nail Signature, an app for nail salons, coming soon.")
+               "with LaneTally for trucking, SizeGuard for traders and Nail Signature for nail salons coming soon.")
 
 
 def css():
@@ -75,14 +75,15 @@ ORG = {
     "address": {"@type": "PostalAddress", "addressRegion": "FL", "addressCountry": "US"},
     "contactPoint": {"@type": "ContactPoint", "contactType": "customer support",
                      "email": EMAIL, "availableLanguage": ["English"]},
-    "knowsAbout": ["Mobile apps", "Software for small businesses",
+    "knowsAbout": ["Trucking dispatch software", "Carrier management software", "Mobile apps", "Software for small businesses",
                    "Barbershop booking software", "Salon software",
                    "Trading tools", "Position size and stop size calculators", "Trading journals",
                    "Prop firm expense and payout tracking"],
     # Every app and website is owned directly by Brightforge Labs LLC (no separate LLC per app).
     "brand": [{"@type": "Brand", "name": "FadeReady", "url": "https://fadeready.com/"},
               {"@type": "Brand", "name": "SizeGuard", "url": "https://sizeguard.com/"},
-              {"@type": "Brand", "name": "Nail Signature", "url": "https://nailsignature.com/"}],
+              {"@type": "Brand", "name": "Nail Signature", "url": "https://nailsignature.com/"},
+              {"@type": "Brand", "name": "LaneTally", "url": "https://lanetally.com/"}],
     # Add social profile links here as they are created, e.g. "https://www.linkedin.com/company/..."
     "sameAs": [],
 }
@@ -112,6 +113,10 @@ APPS = [
      "text": "Everything FadeReady does for barbershops, made for nail salons.",
      "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
      "href": "https://nailsignature.com/", "link": "Get launch news", "org": "In development"},
+    {"key": "lt", "slug": "lanetally", "name": "LaneTally", "ref": "LaneTally", "for": "For trucking", "status": "soon", "icon": "chart",
+     "text": "Truck dispatch and trucking accounting software for dispatchers, carriers and owner-operators. Loads, invoices, driver pay, IFTA and the books, in English and Spanish.",
+     "features": ["Loads, dispatch board and live fleet map", "Driver app with stops, photos and chat", "Invoices, factoring and driver pay", "IFTA, fuel and cost per mile"],
+     "href": "https://lanetally.com/", "link": "Visit lanetally.com", "org": "Early access"},
 ]
 STATUS = {"live": ('p-live', "Live"), "soon": ('p-soon', "Coming soon")}
 
@@ -125,7 +130,7 @@ FAQ = [
      "booking, the live line, barber and client apps, bookkeeping, and license renewals. "
      "FadeReady and fadeready.com are owned and run by Brightforge Labs LLC."),
     ("What apps does Brightforge Labs make?",
-     "FadeReady for barbershops is live. Coming soon: SizeGuard, a trading toolkit with a stop size calculator "
+     "FadeReady for barbershops is live. LaneTally, truck dispatch and trucking accounting software, is in early access. Coming soon: SizeGuard, a trading toolkit with a stop size calculator "
      "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
      "and Nail Signature, an app for nail salons that does everything FadeReady does (nailsignature.com)."),
     ("Who started Brightforge Labs?",
@@ -289,7 +294,7 @@ def forge():
     """The logo as a living forge: the spark strikes the anvil, embers fly, and the apps it made float around it."""
     m = 3.4  # logo scale inside the 400x400 emblem
     o = 200 - 32 * m
-    tiles = [("fr", "o1", "scissors"), ("tr", "o2", "chart"), ("sl", "o3", "sparkle")]
+    tiles = [("fr", "o1", "scissors"), ("tr", "o2", "chart"), ("sl", "o3", "sparkle"), ("lt", "o4", "chart")]
     cards = "".join(
         f'<a class="orb {pos}" href="#{k}" aria-label="{a["name"]}: see the app">{app_logo(k, 36)}<div><b>{a["name"]}</b>{pill(a["status"])}</div></a>'
         for (k, pos, ic), a in zip(tiles, APPS))
@@ -305,7 +310,7 @@ def forge():
 <g class="ring"><circle cx="200" cy="200" r="168" fill="none" stroke="rgba(255,255,255,.14)" stroke-dasharray="2 9"/></g>
 <circle cx="200" cy="200" r="118" fill="none" stroke="rgba(255,170,80,.18)"/>
 <g class="links" fill="none" stroke="url(#fg-line)" stroke-width="2" stroke-dasharray="5 9" stroke-linecap="round">
-<path d="M115 118 L74 78"/><path d="M318 198 L342 196"/><path d="M126 292 L92 334"/>
+<path d="M115 118 L74 78"/><path d="M318 198 L342 196"/><path d="M126 292 L92 334"/><path d="M285 118 L326 78"/>
 </g>
 <circle class="heat" cx="200" cy="{o + 38 * m:.0f}" r="96" fill="url(#fg-heat)"/>
 <g transform="translate({o:.1f} {o:.1f}) scale({m})">
@@ -348,8 +353,16 @@ def phone():
 <div class="slot"><time>12:00</time>{av("JT","#3a1fa6")}<div class="grow"><b>Jade T.</b><br><small>Pedicure</small></div></div></div>
 <div class="scr-card"><div class="kv"><span>Walk-ins waiting</span><b>2</b></div><div class="kv"><span>Today's sales</span><b class="pos">$860</b></div></div>
 </div>"""
-    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, SizeGuard and Nail Signature">
-<div class="phone" aria-hidden="true"><div class="screen">{fr}{tr}{sl}</div></div>
+    lt = f"""<div class="scr">
+<div class="scr-head">{app_logo("lt", 28, "dot")}<div>LaneTally<small>Dispatch board · This week</small></div></div>
+<div class="scr-card"><h4>Loads on the road · 3</h4>
+<div class="row pulse">{av("RG","#e8590c")}<div class="grow"><b>Dallas, TX → Atlanta, GA</b><br><small>Ray G. · In transit · ETA 4:30 PM</small></div></div>
+<div class="row">{av("ML","#0f766e")}<div class="grow"><b>Memphis, TN → Chicago, IL</b><br><small>Mike L. · Picked up</small></div></div>
+<div class="row">{av("JP","#3a1fa6")}<div class="grow"><b>Ocala, FL → Charlotte, NC</b><br><small>Jose P. · Delivered</small></div></div></div>
+<div class="scr-card"><div class="kv"><span>Gross this week</span><b class="pos">$18,450</b></div><div class="kv"><span>Cost per mile</span><b>$1.62</b></div><div class="kv"><span>Invoices due</span><b>5</b></div></div>
+</div>"""
+    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, SizeGuard, Nail Signature and LaneTally">
+<div class="phone" aria-hidden="true"><div class="screen">{fr}{tr}{sl}{lt}</div></div>
 </div>"""
 
 
@@ -376,10 +389,10 @@ def home():
 <div class="wrap">
 <div>
 <p class="eyebrow"><i></i>Brightforge Labs LLC · Florida, USA</p>
-<h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span>barbershops.</span><span>traders.</span><span>nail salons.</span></span><span class="sr">barbershops, traders and nail salons.</span></span></h1>
+<h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span>barbershops.</span><span>traders.</span><span>nail salons.</span><span>trucking.</span></span><span class="sr">barbershops, traders, nail salons and trucking.</span></span></h1>
 <p class="lead">We are the software company behind <b>FadeReady</b>. We build simple, fast and beautiful apps that help people run their work.</p>
 <div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
-<ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>3 apps</b>1 live, 2 coming</li></ul>
+<ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>4 apps</b>1 live, 3 coming</li></ul>
 </div>
 {forge()}
 </div>
@@ -434,7 +447,7 @@ def about():
     rows = [("Legal name", "Brightforge Labs LLC"), ("Company type", "Florida limited liability company"),
             ("Founded", "2026"), ("Founder", "Idael Fonseca Hidalgo"),
             ("What we do", "Apps for small businesses and independent pros"),
-            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: <a href="https://sizeguard.com/">SizeGuard</a> (traders) and <a href="https://nailsignature.com/">Nail Signature</a> (nail salons)'),
+            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live), <a href="https://lanetally.com/">LaneTally</a> (trucking, early access). Coming soon: <a href="https://sizeguard.com/">SizeGuard</a> (traders) and <a href="https://nailsignature.com/">Nail Signature</a> (nail salons)'),
             ("Ownership", "All our apps and websites, including FadeReady and fadeready.com, are owned by Brightforge Labs LLC"),
             ("Location", "Florida, USA"), ("Email", email_link())]
     table = "".join(f"<tr><th scope=row>{k}</th><td>{v}</td></tr>" for k, v in rows)
@@ -685,6 +698,28 @@ APP_DETAILS = {
         "cta": ("Visit nailsignature.com", "https://nailsignature.com/"),
         "category": "BusinessApplication",
     },
+    "lt": {
+        "title": "LaneTally: truck dispatch and trucking accounting software",
+        "description": ("LaneTally by Brightforge Labs is truck dispatch and trucking accounting software for dispatchers, carriers and "
+                        "owner-operators: loads, a driver app, invoices and factoring, driver pay, IFTA and the books, in English and Spanish."),
+        "h1": 'LaneTally, dispatch software that <span class="accent">keeps every load on track.</span>',
+        "lead": 'Loads, drivers, invoices, IFTA and the books for dispatchers, carriers and owner-operators, in English and Spanish. Early access is open at <a href="https://lanetally.com/">lanetally.com</a>.',
+        "who": "LaneTally is for truck dispatchers, dispatch services, carriers and owner-operators, from one truck to a growing fleet. It works in English and Spanish.",
+        "sections": [
+            ("Loads and dispatch", "Book loads, assign drivers and follow every load from pickup to delivery on one board and a live fleet map."),
+            ("A driver app", "Drivers see their stops, get directions, send photos of paperwork and chat with dispatch from their phone."),
+            ("Invoices and factoring", "Turn delivered loads into invoices, track what brokers owe and keep factoring in one place."),
+            ("Driver pay and dispatch fees", "See what each driver earned and what each carrier owes in dispatch fees, without spreadsheets."),
+            ("IFTA, fuel and cost per mile", "Track fuel and miles by state for IFTA, and see your real cost per mile so you know which loads pay."),
+        ],
+        "faq": [
+            ("What is LaneTally?", "LaneTally is dispatch and carrier software for trucking. It handles loads, a driver app, invoices and factoring, driver pay, dispatch fees, IFTA, fuel and cost per mile."),
+            ("Who makes LaneTally?", "LaneTally is made, owned and run by Brightforge Labs LLC, a software company in Florida, USA."),
+            ("Can I try LaneTally?", "Yes. There is a free demo at lanetally.com/demo. LaneTally is in early access, and you can join the waiting list on lanetally.com."),
+        ],
+        "cta": ("Visit lanetally.com", "https://lanetally.com/"),
+        "category": "BusinessApplication",
+    }
 }
 
 
@@ -757,7 +792,7 @@ def main():
     for name, html in pages.items():
         (OUT / name).write_text(tidy(html))
     urls = ["", *[a["slug"] for a in APPS], "about", "contact", "privacy", "terms"]
-    prio = {"": "1.0", "fadeready": "0.9", "sizeguard": "0.8", "nail-signature": "0.8",
+    prio = {"": "1.0", "fadeready": "0.9", "sizeguard": "0.8", "nail-signature": "0.8", "lanetally": "0.9",
             "about": "0.8", "contact": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
