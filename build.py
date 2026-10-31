@@ -19,7 +19,7 @@ UPDATED = "2026-10-31"
 UPDATED_TEXT = "October 31, 2026"
 DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady. "
                "We build simple, fast, beautiful apps for small businesses and independent pros, "
-               "with a trading toolkit and a salon app coming soon.")
+               "with a trading toolkit and Nail Signature, an app for nail salons, coming soon.")
 
 
 def css():
@@ -80,7 +80,8 @@ ORG = {
                    "Trading tools", "Position size and stop size calculators", "Trading journals",
                    "Prop firm expense and payout tracking"],
     # Every app and website is owned directly by Brightforge Labs LLC (no separate LLC per app).
-    "brand": [{"@type": "Brand", "name": "FadeReady", "url": "https://fadeready.com/"}],
+    "brand": [{"@type": "Brand", "name": "FadeReady", "url": "https://fadeready.com/"},
+              {"@type": "Brand", "name": "Nail Signature"}],
     # Add social profile links here as they are created, e.g. "https://www.linkedin.com/company/..."
     "sameAs": [],
 }
@@ -98,15 +99,15 @@ FADEREADY = {
 }
 
 APPS = [
-    {"key": "fr", "slug": "fadeready", "name": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
+    {"key": "fr", "slug": "fadeready", "name": "FadeReady", "ref": "FadeReady", "for": "For barbershops", "status": "live", "icon": "scissors",
      "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
      "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
      "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Live at fadeready.com"},
-    {"key": "tr", "slug": "trading-toolkit", "name": "Trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
+    {"key": "tr", "slug": "trading-toolkit", "name": "Trading toolkit", "ref": "the trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
      "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
      "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
      "href": "/contact", "link": "Get launch news", "org": "In development"},
-    {"key": "sl", "slug": "salon-app", "name": "Salon app", "for": "For nail salons", "status": "soon", "icon": "sparkle",
+    {"key": "sl", "slug": "nail-signature", "name": "Nail Signature", "ref": "Nail Signature", "for": "For nail salons", "status": "soon", "icon": "sparkle",
      "text": "Everything FadeReady does for barbershops, made for nail salons.",
      "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
      "href": "/contact", "link": "Get launch news", "org": "In development"},
@@ -125,7 +126,7 @@ FAQ = [
     ("What apps does Brightforge Labs make?",
      "FadeReady for barbershops is live. Coming soon: a trading toolkit with a stop size calculator "
      "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
-     "and a salon app that does everything FadeReady does, made for nail salons."),
+     "and Nail Signature, an app for nail salons that does everything FadeReady does (nailsignature.com)."),
     ("Who started Brightforge Labs?",
      "Brightforge Labs was started in 2026 by Idael Fonseca Hidalgo."),
     ("How do I contact Brightforge Labs?",
@@ -260,7 +261,7 @@ def app_cards():
 <div class="app-top"><div class="tile t-{a['key']}">{ICONS[a['icon']]}</div><div><h3>{a['name']}</h3><span class="for">{a['for']}</span></div>{pill(a['status'])}</div>
 <p>{a['text']}</p>
 <ul class="feat">{feats}</ul>
-<a class="more" href="/{a['slug']}">Learn more about {a['name'] if a['status'] == 'live' else 'the ' + a['name'].lower()} <span aria-hidden="true">→</span></a>
+<a class="more" href="/{a['slug']}">Learn more about {a['ref']} <span aria-hidden="true">→</span></a>
 </article>""")
     return '<div class="apps">' + "".join(out) + "</div>"
 
@@ -284,7 +285,7 @@ def forge():
     cards = "".join(
         f'<div class="orb {pos}"><div class="tile t-{k}">{ICONS[ic]}</div><div><b>{a["name"]}</b>{pill(a["status"])}</div></div>'
         for (k, pos, ic), a in zip(tiles, APPS))
-    return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, the trading toolkit and the salon app around it">
+    return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, the trading toolkit and Nail Signature around it">
 <div class="halo" aria-hidden="true"></div>
 <svg class="emblem" viewBox="0 0 400 400" aria-hidden="true">
 <defs>
@@ -332,14 +333,14 @@ def phone():
 <div class="scr-card"><h4>Daily journal</h4><small>Stuck to my plan. Calm, patient, no revenge trades.</small></div>
 </div>"""
     sl = f"""<div class="scr">
-<div class="scr-head"><span class="dot t-sl">{ICONS["sparkle"]}</span><div>Salon app<small>Today · Polished Nail Studio</small></div></div>
+<div class="scr-head"><span class="dot t-sl">{ICONS["sparkle"]}</span><div>Nail Signature<small>Today · Polished Nail Studio</small></div></div>
 <div class="scr-card"><h4>Today's bookings</h4>
 <div class="slot"><time>10:00</time>{av("KM","#9d174d")}<div class="grow"><b>Kayla M.</b><br><small>Gel manicure</small></div></div>
 <div class="slot pulse"><time>10:45</time>{av("SR","#e8590c")}<div class="grow"><b>Sofia R.</b><br><small>Acrylic full set</small></div></div>
 <div class="slot"><time>12:00</time>{av("JT","#3a1fa6")}<div class="grow"><b>Jade T.</b><br><small>Pedicure</small></div></div></div>
 <div class="scr-card"><div class="kv"><span>Walk-ins waiting</span><b>2</b></div><div class="kv"><span>Today's sales</span><b class="pos">$860</b></div></div>
 </div>"""
-    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, the trading toolkit and the salon app">
+    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, the trading toolkit and Nail Signature">
 <div class="phone" aria-hidden="true"><div class="screen">{fr}{tr}{sl}</div></div>
 </div>"""
 
@@ -425,7 +426,7 @@ def about():
     rows = [("Legal name", "Brightforge Labs LLC"), ("Company type", "Florida limited liability company"),
             ("Founded", "2026"), ("Founder", "Idael Fonseca Hidalgo"),
             ("What we do", "Apps for small businesses and independent pros"),
-            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: a trading toolkit (traders) and a salon app (nail salons)'),
+            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: a trading toolkit (traders) and Nail Signature (nail salons)'),
             ("Ownership", "All our apps and websites, including FadeReady and fadeready.com, are owned by Brightforge Labs LLC"),
             ("Location", "Florida, USA"), ("Email", email_link())]
     table = "".join(f"<tr><th scope=row>{k}</th><td>{v}</td></tr>" for k, v in rows)
@@ -437,7 +438,7 @@ def about():
 <h2 style="margin-top:0">Why we started</h2>
 <p>People who run their own work are busy. Barbers, nail techs, shop owners and traders have no time to fight their tools. But the apps they use are often slow, confusing or ugly.</p>
 <p>We thought they deserved better. So in 2026, Idael Fonseca Hidalgo started <strong>Brightforge Labs LLC</strong>, a software company in Florida, USA.</p>
-<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come a trading toolkit for traders and a salon app that brings everything FadeReady does to nail salons.</p>
+<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come a trading toolkit for traders and Nail Signature, an app that brings everything FadeReady does to nail salons.</p>
 <h2>What our name means</h2>
 <p>A forge is a hot fire where metal is shaped into strong tools. <strong>Brightforge</strong> is a place where bright ideas are shaped into real products. <strong>Labs</strong> means we never stop testing and improving.</p>
 </div>
@@ -655,12 +656,12 @@ APP_DETAILS = {
         "category": "FinanceApplication",
     },
     "sl": {
-        "title": "Salon app for nail salons: booking, live line and bookkeeping",
-        "description": ("The Brightforge Labs salon app (coming soon) brings everything FadeReady does to nail salons: "
+        "title": "Nail Signature: the nail salon app for booking, the live line and bookkeeping",
+        "description": ("Nail Signature by Brightforge Labs (coming soon) brings everything FadeReady does to nail salons: "
                         "online booking, a live line, nail tech and client apps, bookkeeping and license reminders."),
-        "h1": 'The salon app, made <span class="accent">for nail salons.</span>',
+        "h1": 'Nail Signature, the app made <span class="accent">for nail salons.</span>',
         "lead": "Everything FadeReady does for barbershops, made for nail salons: booking, the live line, team and client apps, bookkeeping and license reminders. Coming soon.",
-        "who": "The salon app is for nail salon owners, nail techs and their clients, from a single-desk studio to a busy salon.",
+        "who": "Nail Signature is for nail salon owners, nail techs and their clients, from a single-desk studio to a busy salon.",
         "sections": [
             ("Online booking", "Clients choose a nail tech, a service and a time from their phone, day or night."),
             ("A live line for walk-ins", "Walk-in clients join the line from their phone and see when it is their turn."),
@@ -669,9 +670,9 @@ APP_DETAILS = {
             ("License renewal reminders", "Get a reminder before nail tech and salon licenses expire."),
         ],
         "faq": [
-            ("What is the Brightforge Labs salon app?", "It is an app for nail salons that does everything FadeReady does for barbershops: online booking, a live line, nail tech and client apps, bookkeeping and license renewal reminders."),
-            ("When will the salon app be available?", "It is in development. Email hello@brightforgelabs.app to hear when it launches."),
-            ("Who makes the salon app?", "Brightforge Labs LLC, the Florida software company that also makes FadeReady."),
+            ("What is Nail Signature?", "Nail Signature is an app for nail salons that does everything FadeReady does for barbershops: online booking, a live line, nail tech and client apps, bookkeeping and license renewal reminders."),
+            ("When will Nail Signature be available?", "It is in development and will launch at nailsignature.com. Email hello@brightforgelabs.app to hear when it launches."),
+            ("Who makes Nail Signature?", "Brightforge Labs LLC, the Florida software company that also makes FadeReady."),
         ],
         "cta": ("Get launch news", "/contact"),
         "category": "BusinessApplication",
@@ -696,7 +697,7 @@ def app_page(a):
 <h2>Who it is for</h2>
 <p>{d['who']}</p>
 <h2>Who makes it</h2>
-<p>{a['name'] if a['status'] == 'live' else 'The ' + a['name'].lower()} is made, owned and run by <a href="/about">Brightforge Labs LLC</a>, a software company in Florida, USA. Like every app we make, it is simple, fast, beautiful and secure.</p>
+<p>{a['ref'][0].upper() + a['ref'][1:]} is made, owned and run by <a href="/about">Brightforge Labs LLC</a>, a software company in Florida, USA. Like every app we make, it is simple, fast, beautiful and secure.</p>
 <p><a class="btn btn-primary" href="{href}">{label}</a></p>
 </div>
 </section>
@@ -746,7 +747,7 @@ def main():
     for name, html in pages.items():
         (OUT / name).write_text(tidy(html))
     urls = ["", *[a["slug"] for a in APPS], "about", "contact", "privacy", "terms"]
-    prio = {"": "1.0", "fadeready": "0.9", "trading-toolkit": "0.8", "salon-app": "0.8",
+    prio = {"": "1.0", "fadeready": "0.9", "trading-toolkit": "0.8", "nail-signature": "0.8",
             "about": "0.8", "contact": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
