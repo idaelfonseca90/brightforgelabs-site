@@ -290,3 +290,8 @@ a.orb:focus-visible{outline:2px solid #ffb03a;outline-offset:3px}
 a.orb{touch-action:manipulation}
 a.orb::before{content:"";position:absolute;inset:-14px -8px}
 a.orb:hover,a.orb:focus,a.orb:active{animation-play-state:paused}
+.orb{padding:6px 10px 6px 6px;gap:8px;border-radius:12px}
+.orb b{font-size:.8rem;margin-bottom:2px}
+.orb .pill{font-size:.6rem;padding:1px 6px;gap:4px}
+.orb .pill::before{width:5px;height:5px}
+@media (max-width:420px){.orb{padding:5px 8px 5px 5px;gap:6px}.orb b{font-size:.72rem}.orb .pill{font-size:.56rem;padding:0 5px}}
