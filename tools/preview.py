@@ -5,10 +5,10 @@ root = Path(__file__).resolve().parent.parent
 pub, out = root / "public", root / "preview"
 shutil.rmtree(out, ignore_errors=True); out.mkdir()
 links = {'"/site.js"': '"site.js"', '"/"': '"home.html"', '"/#apps"': '"home.html#apps"', '"/about"': '"about.html"',
-         '"/contact"': '"contact.html"', '"/privacy"': '"privacy.html"', '"/terms"': '"terms.html"', '"/fadeready"': '"fadeready.html"', '"/trading-toolkit"': '"trading-toolkit.html"', '"/nail-signature"': '"nail-signature.html"'}
+         '"/contact"': '"contact.html"', '"/privacy"': '"privacy.html"', '"/terms"': '"terms.html"', '"/fadeready"': '"fadeready.html"', '"/sizeguard"': '"sizeguard.html"', '"/nail-signature"': '"nail-signature.html"'}
 for src, dst in [("index.html", "home.html"), ("about.html", "about.html"), ("contact.html", "contact.html"),
                  ("privacy.html", "privacy.html"), ("terms.html", "terms.html"),
-                 ("fadeready.html", "fadeready.html"), ("trading-toolkit.html", "trading-toolkit.html"),
+                 ("fadeready.html", "fadeready.html"), ("sizeguard.html", "sizeguard.html"),
                  ("nail-signature.html", "nail-signature.html")]:
     html = (pub / src).read_text()
     for a, b in links.items():

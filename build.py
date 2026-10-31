@@ -19,7 +19,7 @@ UPDATED = "2026-10-31"
 UPDATED_TEXT = "October 31, 2026"
 DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady. "
                "We build simple, fast, beautiful apps for small businesses and independent pros, "
-               "with a trading toolkit and Nail Signature, an app for nail salons, coming soon.")
+               "with SizeGuard, a trading toolkit, and Nail Signature, an app for nail salons, coming soon.")
 
 
 def css():
@@ -81,6 +81,7 @@ ORG = {
                    "Prop firm expense and payout tracking"],
     # Every app and website is owned directly by Brightforge Labs LLC (no separate LLC per app).
     "brand": [{"@type": "Brand", "name": "FadeReady", "url": "https://fadeready.com/"},
+              {"@type": "Brand", "name": "SizeGuard", "url": "https://sizeguard.com/"},
               {"@type": "Brand", "name": "Nail Signature", "url": "https://nailsignature.com/"}],
     # Add social profile links here as they are created, e.g. "https://www.linkedin.com/company/..."
     "sameAs": [],
@@ -103,10 +104,10 @@ APPS = [
      "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
      "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
      "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Live at fadeready.com"},
-    {"key": "tr", "slug": "trading-toolkit", "name": "Trading toolkit", "ref": "the trading toolkit", "for": "For traders", "status": "soon", "icon": "chart",
+    {"key": "tr", "slug": "sizeguard", "name": "SizeGuard", "ref": "SizeGuard", "for": "For traders", "status": "soon", "icon": "chart",
      "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
      "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
-     "href": "/contact", "link": "Get launch news", "org": "In development"},
+     "href": "https://sizeguard.com/", "link": "Get launch news", "org": "In development"},
     {"key": "sl", "slug": "nail-signature", "name": "Nail Signature", "ref": "Nail Signature", "for": "For nail salons", "status": "soon", "icon": "sparkle",
      "text": "Everything FadeReady does for barbershops, made for nail salons.",
      "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
@@ -124,7 +125,7 @@ FAQ = [
      "booking, the live line, barber and client apps, bookkeeping, and license renewals. "
      "FadeReady and fadeready.com are owned and run by Brightforge Labs LLC."),
     ("What apps does Brightforge Labs make?",
-     "FadeReady for barbershops is live. Coming soon: a trading toolkit with a stop size calculator "
+     "FadeReady for barbershops is live. Coming soon: SizeGuard, a trading toolkit with a stop size calculator "
      "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
      "and Nail Signature, an app for nail salons that does everything FadeReady does (nailsignature.com)."),
     ("Who started Brightforge Labs?",
@@ -285,7 +286,7 @@ def forge():
     cards = "".join(
         f'<div class="orb {pos}"><div class="tile t-{k}">{ICONS[ic]}</div><div><b>{a["name"]}</b>{pill(a["status"])}</div></div>'
         for (k, pos, ic), a in zip(tiles, APPS))
-    return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, the trading toolkit and Nail Signature around it">
+    return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, SizeGuard and Nail Signature around it">
 <div class="halo" aria-hidden="true"></div>
 <svg class="emblem" viewBox="0 0 400 400" aria-hidden="true">
 <defs>
@@ -326,7 +327,7 @@ def phone():
 <div class="scr-card"><div class="kv"><span>Today's sales</span><b class="pos">$1,284</b></div><div class="kv"><span>Cuts done</span><b>27</b></div></div>
 </div>"""
     tr = f"""<div class="scr">
-<div class="scr-head"><span class="dot t-tr">{ICONS["chart"]}</span><div>Trading toolkit<small>Stop size calculator</small></div></div>
+<div class="scr-head"><span class="dot t-tr">{ICONS["chart"]}</span><div>SizeGuard<small>Stop size calculator</small></div></div>
 <div class="mkts"><span class="on">Futures</span><span>Forex</span><span>Stocks</span><span>Crypto</span></div>
 <div class="scr-card"><h4>Position size</h4><div class="big">3 contracts</div><div class="kv"><span>Risk</span><b>$300 (1%)</b></div><div class="kv"><span>Stop</span><b>20 ticks</b></div><div class="bar"><i></i></div></div>
 <div class="scr-card"><h4>Prop firm tracker</h4><div class="kv"><span>Evaluations and resets</span><b class="neg">−$612</b></div><div class="kv"><span>Payouts</span><b class="pos">+$2,450</b></div><div class="kv"><span>Net</span><b class="pos">+$1,838</b></div></div>
@@ -340,7 +341,7 @@ def phone():
 <div class="slot"><time>12:00</time>{av("JT","#3a1fa6")}<div class="grow"><b>Jade T.</b><br><small>Pedicure</small></div></div></div>
 <div class="scr-card"><div class="kv"><span>Walk-ins waiting</span><b>2</b></div><div class="kv"><span>Today's sales</span><b class="pos">$860</b></div></div>
 </div>"""
-    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, the trading toolkit and Nail Signature">
+    return f"""<div class="stage" role="img" aria-label="Example screens from FadeReady, SizeGuard and Nail Signature">
 <div class="phone" aria-hidden="true"><div class="screen">{fr}{tr}{sl}</div></div>
 </div>"""
 
@@ -426,7 +427,7 @@ def about():
     rows = [("Legal name", "Brightforge Labs LLC"), ("Company type", "Florida limited liability company"),
             ("Founded", "2026"), ("Founder", "Idael Fonseca Hidalgo"),
             ("What we do", "Apps for small businesses and independent pros"),
-            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: a trading toolkit (traders) and Nail Signature (nail salons)'),
+            ("Our apps", '<a href="https://fadeready.com/">FadeReady</a> (barbershops, live). Coming soon: <a href="https://sizeguard.com/">SizeGuard</a> (traders) and <a href="https://nailsignature.com/">Nail Signature</a> (nail salons)'),
             ("Ownership", "All our apps and websites, including FadeReady and fadeready.com, are owned by Brightforge Labs LLC"),
             ("Location", "Florida, USA"), ("Email", email_link())]
     table = "".join(f"<tr><th scope=row>{k}</th><td>{v}</td></tr>" for k, v in rows)
@@ -438,7 +439,7 @@ def about():
 <h2 style="margin-top:0">Why we started</h2>
 <p>People who run their own work are busy. Barbers, nail techs, shop owners and traders have no time to fight their tools. But the apps they use are often slow, confusing or ugly.</p>
 <p>We thought they deserved better. So in 2026, Idael Fonseca Hidalgo started <strong>Brightforge Labs LLC</strong>, a software company in Florida, USA.</p>
-<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come a trading toolkit for traders and Nail Signature, an app that brings everything FadeReady does to nail salons.</p>
+<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come SizeGuard, a trading toolkit for traders and Nail Signature, an app that brings everything FadeReady does to nail salons.</p>
 <h2>What our name means</h2>
 <p>A forge is a hot fire where metal is shaped into strong tools. <strong>Brightforge</strong> is a place where bright ideas are shaped into real products. <strong>Labs</strong> means we never stop testing and improving.</p>
 </div>
@@ -634,12 +635,12 @@ APP_DETAILS = {
         "category": "BusinessApplication",
     },
     "tr": {
-        "title": "Trading toolkit: stop size calculator, trading journal and prop firm tracker",
-        "description": ("The Brightforge Labs trading toolkit (coming soon): a stop size calculator for futures, forex, "
+        "title": "SizeGuard: stop size calculator, trading journal and prop firm tracker",
+        "description": ("SizeGuard by Brightforge Labs (coming soon) is a trading toolkit with a stop size calculator for futures, forex, "
                         "stocks and crypto, a trading journal, a daily journal and a prop firm tracker for fees and payouts."),
-        "h1": 'A trading toolkit to <span class="accent">plan, record and review.</span>',
-        "lead": "A stop size calculator for four markets, a trading journal, a daily journal and a prop firm tracker, in one app. Coming soon.",
-        "who": "The trading toolkit is for day traders, swing traders and prop firm traders who trade futures, forex, stocks or crypto and want to manage risk and keep honest records.",
+        "h1": 'SizeGuard, the trading toolkit to <span class="accent">plan, record and review.</span>',
+        "lead": "A stop size calculator for four markets, a trading journal, a daily journal and a prop firm tracker, in one app. Coming soon at <a href=\"https://sizeguard.com/\">sizeguard.com</a>.",
+        "who": "SizeGuard is for day traders, swing traders and prop firm traders who trade futures, forex, stocks or crypto and want to manage risk and keep honest records.",
         "sections": [
             ("Stop size calculator for 4 markets", "Enter your account size, your risk and your stop, and see the right position size for futures, forex, stocks or crypto. No mental math under pressure."),
             ("Trading journal", "Log every trade with entry, exit, size, result and notes, then review what works and what doesn't."),
@@ -648,11 +649,11 @@ APP_DETAILS = {
             ("Payout tracking", "Record every payout next to what you spent, so you see what you really earn from prop firms."),
         ],
         "faq": [
-            ("What is the Brightforge Labs trading toolkit?", "It is an app for traders with a stop size calculator for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker for evaluations, resets, fees and payouts."),
-            ("Is the trading toolkit financial advice?", "No. It is a tool for planning and record-keeping. It does not tell you what to buy or sell, and trading carries risk."),
-            ("When will the trading toolkit be available?", "It is in development. Email hello@brightforgelabs.app to hear when it launches."),
+            ("What is SizeGuard?", "SizeGuard is a trading toolkit app with a stop size calculator for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker for evaluations, resets, fees and payouts."),
+            ("Is SizeGuard financial advice?", "No. It is a tool for planning and record-keeping. It does not tell you what to buy or sell, and trading carries risk."),
+            ("When will SizeGuard be available?", "It is in development and will launch at sizeguard.com. Email hello@brightforgelabs.app to hear when it launches."),
         ],
-        "cta": ("Get launch news", "/contact"),
+        "cta": ("Visit sizeguard.com", "https://sizeguard.com/"),
         "category": "FinanceApplication",
     },
     "sl": {
@@ -747,7 +748,7 @@ def main():
     for name, html in pages.items():
         (OUT / name).write_text(tidy(html))
     urls = ["", *[a["slug"] for a in APPS], "about", "contact", "privacy", "terms"]
-    prio = {"": "1.0", "fadeready": "0.9", "trading-toolkit": "0.8", "nail-signature": "0.8",
+    prio = {"": "1.0", "fadeready": "0.9", "sizeguard": "0.8", "nail-signature": "0.8",
             "about": "0.8", "contact": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

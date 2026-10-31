@@ -17,13 +17,13 @@
 ## Apps made by Brightforge Labs
 
 - [FadeReady](https://fadeready.com/): an app for barbershops. It includes online booking, a live line (walk-in queue), a barber app, a client app, bookkeeping, and license renewal reminders. FadeReady is made, owned and run by Brightforge Labs LLC.
-- Trading toolkit (coming soon): an app for traders. It has a stop size calculator for four markets (futures, forex, stocks and crypto), a built-in trading journal, a daily journal for notes and feelings, and a prop firm tracker for evaluations, resets, monthly fees and payouts, so traders can see what they spend on prop firms and what they get back. It is a tool for planning and record-keeping, not financial advice.
+- SizeGuard (coming soon, https://sizeguard.com): a trading toolkit app for traders. It has a stop size calculator for four markets (futures, forex, stocks and crypto), a built-in trading journal, a daily journal for notes and feelings, and a prop firm tracker for evaluations, resets, monthly fees and payouts, so traders can see what they spend on prop firms and what they get back. It is a tool for planning and record-keeping, not financial advice.
 - Nail Signature (coming soon, https://nailsignature.com): an app for nail salons that does everything FadeReady does (booking, live line, nail tech and client apps, bookkeeping, license renewals), made for nail salons.
 
 ## Common questions
 
 - What is Brightforge Labs? A Florida software company that builds simple, fast, beautiful apps for small businesses and independent pros.
-- What apps does Brightforge Labs make? FadeReady (barbershops), plus a trading toolkit (traders) and Nail Signature (nail salons), both coming soon.
+- What apps does Brightforge Labs make? FadeReady (barbershops), plus SizeGuard (a trading toolkit for traders) and Nail Signature (nail salons), both coming soon.
 - Who makes FadeReady? Brightforge Labs LLC makes, owns and runs FadeReady and fadeready.com.
 - Who owns the apps? Brightforge Labs LLC owns all of its apps and websites directly.
 - Who owns Brightforge Labs? Idael Fonseca Hidalgo founded and owns Brightforge Labs LLC.
@@ -32,7 +32,7 @@
 
 - [Home](https://brightforgelabs.app/): what Brightforge Labs does and its apps
 - [FadeReady](https://brightforgelabs.app/fadeready): the barbershop app, features and questions
-- [Trading toolkit](https://brightforgelabs.app/trading-toolkit): stop size calculator, trading journal, daily journal and prop firm tracker (coming soon)
+- [SizeGuard](https://brightforgelabs.app/sizeguard): trading toolkit with stop size calculator, trading journal, daily journal and prop firm tracker (coming soon)
 - [Nail Signature](https://brightforgelabs.app/nail-signature): the nail salon app (coming soon)
 - [About](https://brightforgelabs.app/about): company story, values and facts
 - [Contact](https://brightforgelabs.app/contact): email hello@brightforgelabs.app
