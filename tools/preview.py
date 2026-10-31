@@ -13,6 +13,7 @@ for src, dst in [("index.html", "home.html"), ("about.html", "about.html"), ("co
     html = (pub / src).read_text()
     for a, b in links.items():
         html = html.replace("href=" + a, "href=" + b).replace("src=" + a, "src=" + b)
+    html = html.replace('"/apps/', '"apps/').replace(' /apps/', ' apps/')
     (out / dst).write_text(html)
 home = (out / "home.html").read_text()
 title = re.search(r"<title>.*?</title>", home).group(0)
@@ -20,4 +21,5 @@ style = re.search(r"<style>.*?</style>", home, re.S).group(0)
 body = re.search(r"<body>(.*)</body>", home, re.S).group(1)
 (out / "index.html").write_text(f"<title>Brightforge Labs Website</title>\n{style}\n{body}")
 shutil.copy(pub / "site.js", out / "site.js")
+shutil.copytree(pub / "apps", out / "apps")
 print("preview ready")

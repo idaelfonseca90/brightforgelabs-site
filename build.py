@@ -249,6 +249,13 @@ def value_list():
         for i, t, d in items) + "</div>"
 
 
+def app_logo(key, size=56, cls="tile"):
+    """The app's real icon, served small and sharp on any screen."""
+    name = next(a["name"] for a in APPS if a["key"] == key)
+    return (f'<img class="{cls} logo" src="/apps/{key}-128.webp" srcset="/apps/{key}-64.webp 64w, /apps/{key}-128.webp 128w, /apps/{key}-256.webp 256w" '
+            f'sizes="{size}px" width="{size}" height="{size}" alt="{name} logo" decoding="async">')
+
+
 def pill(status):
     cls, label = STATUS[status]
     return f'<span class="pill {cls}">{label}</span>'
@@ -259,7 +266,7 @@ def app_cards():
     for a in APPS:
         feats = "".join(f"<li>{f}</li>" for f in a["features"])
         out.append(f"""<article class="app" id="{a['key']}">
-<div class="app-top"><div class="tile t-{a['key']}">{ICONS[a['icon']]}</div><div><h3>{a['name']}</h3><span class="for">{a['for']}</span></div>{pill(a['status'])}</div>
+<div class="app-top">{app_logo(a['key'])}<div><h3>{a['name']}</h3><span class="for">{a['for']}</span></div>{pill(a['status'])}</div>
 <p>{a['text']}</p>
 <ul class="feat">{feats}</ul>
 <a class="more" href="/{a['slug']}">Learn more about {a['ref']} <span aria-hidden="true">→</span></a>
@@ -269,7 +276,7 @@ def app_cards():
 
 def org_chart():
     kids = "".join(
-        f'<li><div class="tile t-{a["key"]}">{ICONS[a["icon"]]}</div><div><b>{a["name"]}</b><small>{a["org"]}</small></div>{pill(a["status"])}</li>'
+        f'<li>{app_logo(a["key"], 38)}<div><b>{a["name"]}</b><small>{a["org"]}</small></div>{pill(a["status"])}</li>'
         for a in APPS)
     return f"""<div class="org" role="group" aria-label="Brightforge Labs and its apps">
 <p class="org-cap">Our company</p>
@@ -284,7 +291,7 @@ def forge():
     o = 200 - 32 * m
     tiles = [("fr", "o1", "scissors"), ("tr", "o2", "chart"), ("sl", "o3", "sparkle")]
     cards = "".join(
-        f'<div class="orb {pos}"><div class="tile t-{k}">{ICONS[ic]}</div><div><b>{a["name"]}</b>{pill(a["status"])}</div></div>'
+        f'<div class="orb {pos}">{app_logo(k, 36)}<div><b>{a["name"]}</b>{pill(a["status"])}</div></div>'
         for (k, pos, ic), a in zip(tiles, APPS))
     return f"""<div class="forge" role="img" aria-label="The Brightforge Labs logo, an anvil and a spark, with its apps FadeReady, SizeGuard and Nail Signature around it">
 <div class="halo" aria-hidden="true"></div>
@@ -318,7 +325,7 @@ def forge():
 def phone():
     av = lambda t, c: f'<span class="av" style="background:{c}">{t}</span>'
     fr = f"""<div class="scr">
-<div class="scr-head"><span class="dot t-fr">{ICONS["scissors"]}</span><div>FadeReady<small>Live line · Main St. Barbers</small></div></div>
+<div class="scr-head">{app_logo("fr", 28, "dot")}<div>FadeReady<small>Live line · Main St. Barbers</small></div></div>
 <div class="scr-card"><h4>Now in the chair</h4><div class="row">{av("MJ","#3a1fa6")}<div class="grow"><b>Marcus J.</b><br><small>Skin fade · with Tony</small></div><span class="tag-now">Now</span></div></div>
 <div class="scr-card"><h4>Up next · 3 waiting</h4>
 <div class="row pulse">{av("DL","#e8590c")}<div class="grow"><b>Devin L.</b><br><small>Cut and beard · 8 min</small></div></div>
@@ -327,14 +334,14 @@ def phone():
 <div class="scr-card"><div class="kv"><span>Today's sales</span><b class="pos">$1,284</b></div><div class="kv"><span>Cuts done</span><b>27</b></div></div>
 </div>"""
     tr = f"""<div class="scr">
-<div class="scr-head"><span class="dot t-tr">{ICONS["chart"]}</span><div>SizeGuard<small>Stop size calculator</small></div></div>
+<div class="scr-head">{app_logo("tr", 28, "dot")}<div>SizeGuard<small>Stop size calculator</small></div></div>
 <div class="mkts"><span class="on">Futures</span><span>Forex</span><span>Stocks</span><span>Crypto</span></div>
 <div class="scr-card"><h4>Position size</h4><div class="big">3 contracts</div><div class="kv"><span>Risk</span><b>$300 (1%)</b></div><div class="kv"><span>Stop</span><b>20 ticks</b></div><div class="bar"><i></i></div></div>
 <div class="scr-card"><h4>Prop firm tracker</h4><div class="kv"><span>Evaluations and resets</span><b class="neg">−$612</b></div><div class="kv"><span>Payouts</span><b class="pos">+$2,450</b></div><div class="kv"><span>Net</span><b class="pos">+$1,838</b></div></div>
 <div class="scr-card"><h4>Daily journal</h4><small>Stuck to my plan. Calm, patient, no revenge trades.</small></div>
 </div>"""
     sl = f"""<div class="scr">
-<div class="scr-head"><span class="dot t-sl">{ICONS["sparkle"]}</span><div>Nail Signature<small>Today · Polished Nail Studio</small></div></div>
+<div class="scr-head">{app_logo("sl", 28, "dot")}<div>Nail Signature<small>Today · Polished Nail Studio</small></div></div>
 <div class="scr-card"><h4>Today's bookings</h4>
 <div class="slot"><time>10:00</time>{av("KM","#9d174d")}<div class="grow"><b>Kayla M.</b><br><small>Gel manicure</small></div></div>
 <div class="slot pulse"><time>10:45</time>{av("SR","#e8590c")}<div class="grow"><b>Sofia R.</b><br><small>Acrylic full set</small></div></div>
@@ -689,7 +696,8 @@ def app_page(a):
                        for q, x in d["faq"])
     label, href = d["cta"]
     status = "Live now" if a["status"] == "live" else "Coming soon"
-    body = page_hero(f"{a['for']} · {status}", d["h1"], d["lead"]) + f"""
+    body = page_hero(f"{a['for']} · {status}", d["h1"], d["lead"]).replace(
+        '<p class="eyebrow">', app_logo(a["key"], 72, "tile hero-logo") + '<p class="eyebrow">', 1) + f"""
 <section>
 <div class="narrow prose">
 <span class="kicker">What it does</span>
@@ -714,6 +722,7 @@ def app_page(a):
     app_ld = {"@type": "SoftwareApplication", "@id": f"{url}#app", "name": a["name"],
               "url": a["href"] if a["href"].startswith("http") else url,
               "applicationCategory": d["category"], "operatingSystem": "iOS, Android, Web",
+              "image": f"{SITE}/apps/{a['key']}-256.webp",
               "description": d["description"], "featureList": [t for t, _ in d["sections"]],
               "author": {"@id": f"{SITE}/#organization"}, "publisher": {"@id": f"{SITE}/#organization"}}
     if a["status"] != "live":

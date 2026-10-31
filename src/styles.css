@@ -103,8 +103,8 @@ section{padding:clamp(64px,9vw,108px) 0}
 .tile{flex:none;width:56px;height:56px;border-radius:14px;display:grid;place-items:center;color:#fff}
 .tile svg{width:28px;height:28px}
 .t-fr{background:linear-gradient(135deg,#111827,#3a1fa6 60%,#ff6a1a)}
-.t-tr{background:linear-gradient(135deg,#0b3b2e,#0f766e 55%,#22c55e)}
-.t-sl{background:linear-gradient(135deg,#9d174d,#e8457c 55%,#f9a8c4)}
+.t-tr{background:linear-gradient(135deg,#0b0906,#3a2a10 55%,#e8b84a)}
+.t-sl{background:linear-gradient(135deg,#2b1630,#5a2f5f 55%,#c9a25a)}
 .app h3{margin:0 0 2px;font-size:1.35rem}
 .app .for{font-size:.9rem;color:var(--muted)}
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
@@ -279,3 +279,5 @@ section{padding:clamp(64px,9vw,108px) 0}
 @keyframes flash{0%,84%{opacity:0;transform:scale(.4)}86%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(2.6)}}
 @keyframes twinkle{50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.flash{display:none}}
+.logo{object-fit:cover;background:#fff;box-shadow:0 0 0 1px rgba(15,23,42,.08)}
+.hero-logo{display:block;width:72px;height:72px;border-radius:18px;margin-bottom:18px}
