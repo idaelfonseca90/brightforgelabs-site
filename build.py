@@ -17,9 +17,9 @@ SITE = "https://brightforgelabs.app"
 EMAIL = "hello@brightforgelabs.app"
 UPDATED = "2026-10-31"
 UPDATED_TEXT = "October 31, 2026"
-DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady. "
-               "We build simple, fast, beautiful apps for small businesses and independent pros, "
-               "with LaneTally for trucking, SizeGuard for traders and Nail Signature for nail salons coming soon.")
+DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady for barbershops, "
+               "LaneTally for trucking, SizeGuard for traders and Nail Signature for nail salons: "
+               "simple, fast, beautiful apps for small businesses and independent pros.")
 
 
 def css():
@@ -191,7 +191,7 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 <meta property="og:image" content="{SITE}/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Brightforge Labs: the company behind FadeReady and more apps.">
+<meta property="og:image:alt" content="Brightforge Labs: the company behind FadeReady, LaneTally, SizeGuard and Nail Signature.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
@@ -390,7 +390,7 @@ def home():
 <div>
 <p class="eyebrow"><i></i>Brightforge Labs LLC · Florida, USA</p>
 <h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span>barbershops.</span><span>traders.</span><span>nail salons.</span><span>trucking.</span></span><span class="sr">barbershops, traders, nail salons and trucking.</span></span></h1>
-<p class="lead">We are the software company behind <b>FadeReady</b>. We build simple, fast and beautiful apps that help people run their work.</p>
+<p class="lead">We are the software company behind <b>FadeReady</b>, <b>LaneTally</b>, <b>SizeGuard</b> and <b>Nail Signature</b>. We build simple, fast and beautiful apps that help people run their work.</p>
 <div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
 <ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>4 apps</b>Coming soon</li></ul>
 </div>
@@ -439,7 +439,7 @@ def home():
 </div>
 </section>
 {cta_band()}"""
-    return page("", "Brightforge Labs: the company behind FadeReady and more apps",
+    return page("", "Brightforge Labs: FadeReady, LaneTally, SizeGuard & Nail Signature apps",
                 DESCRIPTION, body, extra_ld=[FADEREADY, faq_ld], script='<script src="/site.js" defer></script>\n')
 
 
