@@ -74,7 +74,8 @@ ORG = {
     "founder": {"@type": "Person", "name": "Idael Fonseca Hidalgo"},
     "address": {"@type": "PostalAddress", "addressRegion": "FL", "addressCountry": "US"},
     "contactPoint": {"@type": "ContactPoint", "contactType": "customer support",
-                     "email": EMAIL, "availableLanguage": ["English"]},
+                     "email": EMAIL, "url": f"{SITE}/support",
+                     "availableLanguage": ["English", "Spanish"]},
     "knowsAbout": ["Trucking dispatch software", "Carrier management software", "Mobile apps", "Software for small businesses",
                    "Barbershop booking software", "Salon software",
                    "Trading tools", "Position size and stop size calculators", "Trading journals",
@@ -144,11 +145,11 @@ FAQ = [
 NAV = [("/#apps", "Apps"), ("/about", "About"), ("/contact", "Contact")]
 
 
-def email_link(cls="", inner=None):
-    inner = inner or EMAIL
+def email_link(cls="", inner=None, addr=EMAIL):
+    inner = inner or addr
     c = f' class="{cls}"' if cls else ""
     # email_off keeps Cloudflare from rewriting the address with an extra script.
-    return f'<!--email_off--><a{c} href="mailto:{EMAIL}">{inner}</a><!--/email_off-->'
+    return f'<!--email_off--><a{c} href="mailto:{addr}">{inner}</a><!--/email_off-->'
 
 
 def page(slug, title, description, body, current=None, extra_ld=(), page_type="WebPage", script=""):
@@ -219,7 +220,7 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 <a class="brand" href="/" aria-label="Brightforge Labs home">{mark("ft")}<span>Brightforge <b>Labs</b></span></a>
 <p>Brightforge Labs LLC is a software company in Florida, USA. We own and build all our apps, including FadeReady.</p>
 </div>
-<div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li>{email_link()}</li></ul></div>
+<div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li><a href="/support">Support</a></li><li>{email_link()}</li></ul></div>
 <div><h2>Apps</h2><ul>{foot_apps}</ul></div>
 <div><h2>Legal</h2><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Use</a></li></ul></div>
 </div>
@@ -501,7 +502,7 @@ def contact():
 <h2>Where we are</h2>
 <p>Brightforge Labs LLC is based in Florida, USA. We work online, so we can help you from anywhere.</p>
 <h2>Need help with an app?</h2>
-<p>For FadeReady, visit <a href="https://fadeready.com/">fadeready.com</a>. For anything else, email us and we will point you to the right place.</p>
+<p>Go to our <a href="/support">Support page</a> for each app's help email, privacy and terms links, and how to delete your account. You can also email us and we will point you to the right place.</p>
 </div>
 </section>"""
     return page("contact", "Contact Brightforge Labs",
@@ -774,6 +775,72 @@ def app_page(a):
                 extra_ld=[app_ld, faq_ld, crumbs])
 
 
+def support():
+    def a(href, text=None):
+        return f'<a href="{href}">{text or href}</a>'
+
+    cards = [
+        {"slug": "fadeready", "key": "fr", "name": "FadeReady", "for": "For barbershops",
+         "contact": f'Email: {email_link()}<br>Support page: {a("https://fadeready.com/support/")}',
+         "legal": f'{a("https://fadeready.com/privacy/", "Privacy Policy")} · {a("https://fadeready.com/terms/", "Terms of Use")}',
+         "delete": ["In the app, go to <strong>Me</strong> (shop owners: <strong>Settings</strong>), then tap <strong>Delete my account</strong>.",
+                    f'Or open {a("https://fadeready.com/delete-account")}.',
+                    f'Or email {email_link()} from the email on your account and ask us to delete it.']},
+        {"slug": "lanetally", "key": "lt", "name": "LaneTally", "for": "For trucking",
+         "contact": f'Email: {email_link(addr="support@lanetally.com")}<br>We look at every message within 24 hours.',
+         "legal": f'{a("https://lanetally.com/privacy/", "Privacy Policy")} · {a("https://lanetally.com/terms/", "Terms of Use")}',
+         "delete": [f'Write to {email_link(addr="support@lanetally.com")} from the email on your account. Ask us to close the account and delete your company\'s data. We delete it and tell you when it is done.',
+                    f'To leave the waiting list, email {email_link(addr="support@lanetally.com")} from the same email you signed up with.']},
+        {"slug": "nail-signature", "key": "sl", "name": "Nail Signature", "for": "For nail salons",
+         "contact": f'Email: {email_link(addr="hello@nailsignature.com")}',
+         "legal": a("https://nailsignature.com/privacy/", "Privacy Policy"),
+         "delete": ["In the app, go to <strong>Me</strong> (salon owners: <strong>Salon settings</strong>), then <strong>Account</strong>, then tap <strong>Delete my account</strong>.",
+                    f'Or open {a("https://nailsignature.com/delete-your-account/")}.',
+                    f'Or email {email_link(addr="hello@nailsignature.com")} from the email or phone number on your account. We finish within 30 days.']},
+    ]
+    out = []
+    for c in cards:
+        steps = "".join(f"<li>{x}</li>" for x in c["delete"])
+        out.append(f"""<article class="app" id="{c['slug']}">
+<div class="app-top">{app_logo(c['key'])}<div><h3>{c['name']}</h3><span class="for">{c['for']}</span></div></div>
+<h4>Contact</h4>
+<p>{c['contact']}</p>
+<h4>Privacy and terms</h4>
+<p>{c['legal']}</p>
+<h4>Delete your account</h4>
+<ul class="steps">{steps}</ul>
+</article>""")
+    body = page_hero("Support", 'Help and <span class="accent">account deletion.</span>',
+                     "Brightforge Labs LLC makes FadeReady, LaneTally and Nail Signature. Find help for each app here, and how to delete your account.") + f"""
+<section>
+<div class="wrap">
+<span class="kicker">Our apps</span>
+<h2>Support for each app</h2>
+<p class="intro">Pick your app below. Each one has its own help email, its own privacy and terms pages, and its own steps to delete your account.</p>
+<div class="apps">{"".join(out)}</div>
+</div>
+</section>
+
+<section class="alt">
+<div class="narrow prose">
+<span class="kicker">Writing to us</span>
+<h2 style="margin-top:0">What to include when you write</h2>
+<p>Tell us the <strong>app name</strong>, the <strong>email you sign in with</strong>, and <strong>what happened</strong>. That helps us fix it faster.</p>
+<p>We answer in English or Spanish.</p>
+<p>Questions about SizeGuard? Email {email_link()}. Another team handles SizeGuard.</p>
+<h2>Brightforge Labs LLC</h2>
+<p>2287 S Haverhill Road<br>West Palm Beach, FL 33415<br>{email_link()}</p>
+</div>
+</section>"""
+    crumbs = {"@type": "BreadcrumbList", "@id": f"{SITE}/support#breadcrumb", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
+        {"@type": "ListItem", "position": 2, "name": "Support", "item": f"{SITE}/support"}]}
+    return page("support", "Support and account deletion | Brightforge Labs",
+                "Help for FadeReady, LaneTally and Nail Signature: support emails, privacy and terms links, "
+                "and how to delete your account. Made by Brightforge Labs LLC.",
+                body, page_type="ContactPage", extra_ld=[crumbs])
+
+
 def not_found():
     body = page_hero("Error 404", 'This page is <span class="accent">not here.</span>',
                      "The page you want may have moved. Let's get you back home.") + """
@@ -788,14 +855,14 @@ def tidy(html):
 
 
 def main():
-    pages = {"index.html": home(), "about.html": about(), "contact.html": contact(),
+    pages = {"index.html": home(), "about.html": about(), "contact.html": contact(), "support.html": support(),
              "privacy.html": privacy(), "terms.html": terms(), "404.html": not_found(),
              **{f"{a['slug']}.html": app_page(a) for a in APPS}}
     for name, html in pages.items():
         (OUT / name).write_text(tidy(html))
-    urls = ["", *[a["slug"] for a in APPS], "about", "contact", "privacy", "terms"]
+    urls = ["", *[a["slug"] for a in APPS], "about", "contact", "support", "privacy", "terms"]
     prio = {"": "1.0", "fadeready": "0.9", "sizeguard": "0.8", "nail-signature": "0.8", "lanetally": "0.9",
-            "about": "0.8", "contact": "0.7"}
+            "about": "0.8", "contact": "0.7", "support": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:

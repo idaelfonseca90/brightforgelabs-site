@@ -38,5 +38,6 @@
 - [Nail Signature](https://brightforgelabs.app/nail-signature): the nail salon app (coming soon, waiting list open)
 - [About](https://brightforgelabs.app/about): company story, values and facts
 - [Contact](https://brightforgelabs.app/contact): email hello@brightforgelabs.app
+- [Support and account deletion](https://brightforgelabs.app/support): help emails, privacy and terms links, and how to delete your account for FadeReady, LaneTally and Nail Signature
 - [Privacy Policy](https://brightforgelabs.app/privacy)
 - [Terms of Use](https://brightforgelabs.app/terms)
