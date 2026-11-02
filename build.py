@@ -104,7 +104,7 @@ APPS = [
     {"key": "fr", "slug": "fadeready", "name": "FadeReady", "ref": "FadeReady", "for": "For barbershops", "status": "soon", "icon": "scissors",
      "text": "Runs the whole barbershop day from one app. Clients book or join the line from their phone, barbers see who is next, and owners keep the books.",
      "features": ["Online booking and a live line", "Barber app and client app", "Bookkeeping and barber pay", "License renewal reminders"],
-     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Waitlist open"},
+     "href": "https://fadeready.com/", "link": "Visit fadeready.com", "org": "Waiting list open"},
     {"key": "tr", "slug": "sizeguard", "name": "SizeGuard", "ref": "SizeGuard", "for": "For traders", "status": "soon", "icon": "chart",
      "text": "Everything a trader needs to plan, record and review. Built for futures, forex, stocks and crypto.",
      "features": ["Stop size calculator for 4 markets", "Trading journal and daily journal", "Prop firm tracker: evaluations, resets and fees", "Payout tracking, so you see what you really earn"],
@@ -112,11 +112,11 @@ APPS = [
     {"key": "sl", "slug": "nail-signature", "name": "Nail Signature", "ref": "Nail Signature", "for": "For nail salons", "status": "soon", "icon": "sparkle",
      "text": "Everything FadeReady does for barbershops, made for nail salons.",
      "features": ["Online booking and a live line", "Nail tech app and client app", "Bookkeeping and team pay", "License renewal reminders"],
-     "href": "https://nailsignature.com/", "link": "Get launch news", "org": "In development"},
+     "href": "https://nailsignature.com/", "link": "Visit nailsignature.com", "org": "Waiting list open"},
     {"key": "lt", "slug": "lanetally", "name": "LaneTally", "ref": "LaneTally", "for": "For trucking", "status": "soon", "icon": "chart",
      "text": "Truck dispatch and trucking accounting software for dispatchers, carriers and owner-operators. Loads, invoices, driver pay, IFTA and the books, in English and Spanish.",
      "features": ["Loads, dispatch board and live fleet map", "Driver app with stops, photos and chat", "Invoices, factoring and driver pay", "IFTA, fuel and cost per mile"],
-     "href": "https://lanetally.com/", "link": "Visit lanetally.com", "org": "Early access"},
+     "href": "https://lanetally.com/", "link": "Visit lanetally.com", "org": "Waiting list open"},
 ]
 STATUS = {"live": ('p-live', "Live"), "soon": ('p-soon', "Coming soon")}
 
@@ -130,9 +130,11 @@ FAQ = [
      "booking, the live line, barber and client apps, bookkeeping, and license renewals. "
      "FadeReady and fadeready.com are owned and run by Brightforge Labs LLC."),
     ("What apps does Brightforge Labs make?",
-     "All four are coming soon: FadeReady for barbershops and LaneTally, truck dispatch and trucking accounting software, both with waiting lists open, plus SizeGuard, a trading toolkit with a stop size calculator "
-     "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker; "
-     "and Nail Signature, an app for nail salons that does everything FadeReady does (nailsignature.com)."),
+     "Four apps, all coming soon: FadeReady for barbershops (fadeready.com), Nail Signature for nail salons, "
+     "which does everything FadeReady does (nailsignature.com), and LaneTally, truck dispatch and trucking accounting software "
+     "(lanetally.com), all three with waiting lists open; plus SizeGuard, a trading toolkit with a stop size calculator "
+     "for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker, "
+     "in development (sizeguard.com)."),
     ("Who started Brightforge Labs?",
      "Brightforge Labs was started in 2026 by Idael Fonseca Hidalgo."),
     ("How do I contact Brightforge Labs?",
@@ -389,7 +391,7 @@ def home():
 <div class="wrap">
 <div>
 <p class="eyebrow"><i></i>Brightforge Labs LLC · Florida, USA</p>
-<h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span>barbershops.</span><span>traders.</span><span>nail salons.</span><span>trucking.</span></span><span class="sr">barbershops, traders, nail salons and trucking.</span></span></h1>
+<h1>Brightforge Labs<span class="sub">Apps for <span class="rot" aria-hidden="true"><span data-w="barbershops."></span><span data-w="traders."></span><span data-w="nail salons."></span><span data-w="trucking."></span></span><span class="sr">barbershops, traders, nail salons and trucking.</span></span></h1>
 <p class="lead">We are the software company behind <b>FadeReady</b>, <b>LaneTally</b>, <b>SizeGuard</b> and <b>Nail Signature</b>. We build simple, fast and beautiful apps that help people run their work.</p>
 <div class="btns"><a class="btn btn-primary" href="#apps">See our apps</a><a class="btn btn-line" href="/about">About the company</a></div>
 <ul class="facts"><li><b>2026</b>Founded</li><li><b>Florida, USA</b>Headquarters</li><li><b>4 apps</b>Coming soon</li></ul>
@@ -459,7 +461,7 @@ def about():
 <h2 style="margin-top:0">Why we started</h2>
 <p>People who run their own work are busy. Barbers, nail techs, shop owners and traders have no time to fight their tools. But the apps they use are often slow, confusing or ugly.</p>
 <p>We thought they deserved better. So in 2026, Idael Fonseca Hidalgo started <strong>Brightforge Labs LLC</strong>, a software company in Florida, USA.</p>
-<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come SizeGuard, a trading toolkit for traders and Nail Signature, an app that brings everything FadeReady does to nail salons.</p>
+<p>Our first app is <a href="https://fadeready.com/">FadeReady</a>, for barbershops. Like all our apps, FadeReady is owned and run by Brightforge Labs LLC. Next come <a href="https://nailsignature.com/">Nail Signature</a>, which brings everything FadeReady does to nail salons, <a href="https://lanetally.com/">LaneTally</a>, truck dispatch and trucking accounting software, and <a href="https://sizeguard.com/">SizeGuard</a>, a trading toolkit for traders.</p>
 <h2>What our name means</h2>
 <p>A forge is a hot fire where metal is shaped into strong tools. <strong>Brightforge</strong> is a place where bright ideas are shaped into real products. <strong>Labs</strong> means we never stop testing and improving.</p>
 </div>
@@ -681,7 +683,7 @@ APP_DETAILS = {
         "description": ("Nail Signature by Brightforge Labs (coming soon) brings everything FadeReady does to nail salons: "
                         "online booking, a live line, nail tech and client apps, bookkeeping and license reminders."),
         "h1": 'Nail Signature, the app made <span class="accent">for nail salons.</span>',
-        "lead": 'Everything FadeReady does for barbershops, made for nail salons: booking, the live line, team and client apps, bookkeeping and license reminders. Coming soon at <a href="https://nailsignature.com/">nailsignature.com</a>.',
+        "lead": 'Everything FadeReady does for barbershops, made for nail salons: booking, the live line, team and client apps, bookkeeping and license reminders. Coming soon, and the waiting list is open at <a href="https://nailsignature.com/">nailsignature.com</a>.',
         "who": "Nail Signature is for nail salon owners, nail techs and their clients, from a single-desk studio to a busy salon.",
         "sections": [
             ("Online booking", "Clients choose a nail tech, a service and a time from their phone, day or night."),
@@ -692,7 +694,7 @@ APP_DETAILS = {
         ],
         "faq": [
             ("What is Nail Signature?", "Nail Signature is an app for nail salons that does everything FadeReady does for barbershops: online booking, a live line, nail tech and client apps, bookkeeping and license renewal reminders."),
-            ("When will Nail Signature be available?", "It is in development and will launch at nailsignature.com. Email hello@brightforgelabs.app to hear when it launches."),
+            ("When will Nail Signature be available?", "Nail Signature is coming soon. Join the waiting list at nailsignature.com to get early access."),
             ("Who makes Nail Signature?", "Brightforge Labs LLC, the Florida software company that also makes FadeReady."),
         ],
         "cta": ("Visit nailsignature.com", "https://nailsignature.com/"),
@@ -715,7 +717,7 @@ APP_DETAILS = {
         "faq": [
             ("What is LaneTally?", "LaneTally is dispatch and carrier software for trucking. It handles loads, a driver app, invoices and factoring, driver pay, dispatch fees, IFTA, fuel and cost per mile."),
             ("Who makes LaneTally?", "LaneTally is made, owned and run by Brightforge Labs LLC, a software company in Florida, USA."),
-            ("Can I try LaneTally?", "Yes. There is a free demo at lanetally.com/demo. LaneTally is in early access, and you can join the waiting list on lanetally.com."),
+            ("Can I try LaneTally?", "Yes. There is a free demo at lanetally.com/demo. LaneTally is in beta, and you can join the waiting list on lanetally.com."),
         ],
         "cta": ("Visit lanetally.com", "https://lanetally.com/"),
         "category": "BusinessApplication",
