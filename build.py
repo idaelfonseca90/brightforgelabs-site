@@ -816,7 +816,7 @@ def support():
 <div class="wrap">
 <span class="kicker">Our apps</span>
 <h2>Support for each app</h2>
-<p class="intro">Pick your app below. Each one has its own help email, its own privacy and terms pages, and its own steps to delete your account.</p>
+<p class="intro">Pick your app below. Each one has its own help email, its own privacy page, and its own steps to delete your account.</p>
 <div class="apps">{"".join(out)}</div>
 </div>
 </section>
@@ -827,7 +827,7 @@ def support():
 <h2 style="margin-top:0">What to include when you write</h2>
 <p>Tell us the <strong>app name</strong>, the <strong>email you sign in with</strong>, and <strong>what happened</strong>. That helps us fix it faster.</p>
 <p>We answer in English or Spanish.</p>
-<p>Questions about SizeGuard? Email {email_link()}. Another team handles SizeGuard.</p>
+<p>Questions about SizeGuard? Email {email_link()}.</p>
 <h2>Brightforge Labs LLC</h2>
 <p>2287 S Haverhill Road<br>West Palm Beach, FL 33415<br>{email_link()}</p>
 </div>
