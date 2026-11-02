@@ -792,11 +792,11 @@ def support():
          "delete": [f'Write to {email_link(addr="support@lanetally.com")} from the email on your account. Ask us to close the account and delete your company\'s data. We delete it and tell you when it is done.',
                     f'To leave the waiting list, email {email_link(addr="support@lanetally.com")} from the same email you signed up with.']},
         {"slug": "nail-signature", "key": "sl", "name": "Nail Signature", "for": "For nail salons",
-         "contact": f'Email: {email_link(addr="hello@nailsignature.com")}',
-         "legal": a("https://nailsignature.com/privacy/", "Privacy Policy"),
+         "contact": f'Email: {email_link()}<br>Support page: {a("https://nailsignature.com/support/")}',
+         "legal": f'{a("https://nailsignature.com/privacy/", "Privacy Policy")} · {a("https://nailsignature.com/terms/", "Terms of Use")}',
          "delete": ["In the app, go to <strong>Me</strong> (salon owners: <strong>Salon settings</strong>), then <strong>Account</strong>, then tap <strong>Delete my account</strong>.",
                     f'Or open {a("https://nailsignature.com/delete-your-account/")}.',
-                    f'Or email {email_link(addr="hello@nailsignature.com")} from the email or phone number on your account. We finish within 30 days.']},
+                    f'Or email {email_link()} from the email or phone number on your account. We finish within 30 days.']},
     ]
     out = []
     for c in cards:
@@ -827,7 +827,7 @@ def support():
 <h2 style="margin-top:0">What to include when you write</h2>
 <p>Tell us the <strong>app name</strong>, the <strong>email you sign in with</strong>, and <strong>what happened</strong>. That helps us fix it faster.</p>
 <p>We answer in English or Spanish.</p>
-<p>Questions about SizeGuard? Email {email_link()}.</p>
+<p>Questions about SizeGuard? Email {email_link(addr="support@sizeguard.com")} or visit {a("https://sizeguard.com/support")}.</p>
 <h2>Brightforge Labs LLC</h2>
 <p>2287 S Haverhill Road<br>West Palm Beach, FL 33415<br>{email_link()}</p>
 </div>
