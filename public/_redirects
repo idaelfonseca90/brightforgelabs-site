@@ -5,3 +5,7 @@
 /terms-of-service /terms   301
 /salon-app       /nail-signature  301
 /trading-toolkit /sizeguard      301
+/refunds         /refund-policy  301
+/refund          /refund-policy  301
+/cancellation    /refund-policy  301
+/cancellation-policy /refund-policy 301

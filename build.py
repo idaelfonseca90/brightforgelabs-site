@@ -15,8 +15,9 @@ OUT = ROOT / "public"
 
 SITE = "https://brightforgelabs.app"
 EMAIL = "hello@brightforgelabs.app"
-UPDATED = "2026-10-31"
-UPDATED_TEXT = "October 31, 2026"
+REFUND_DAYS = 14  # first-payment refund window shown on /refund-policy; change here to update the page
+UPDATED = "2026-11-03"
+UPDATED_TEXT = "November 3, 2026"
 DESCRIPTION = ("Brightforge Labs LLC is the Florida software company behind FadeReady for barbershops, "
                "LaneTally for trucking, SizeGuard for traders and Nail Signature for nail salons: "
                "simple, fast, beautiful apps for small businesses and independent pros.")
@@ -222,11 +223,11 @@ def page(slug, title, description, body, current=None, extra_ld=(), page_type="W
 </div>
 <div><h2>Company</h2><ul><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li><a href="/support">Support</a></li><li>{email_link()}</li></ul></div>
 <div><h2>Apps</h2><ul>{foot_apps}</ul></div>
-<div><h2>Legal</h2><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Use</a></li></ul></div>
+<div><h2>Legal</h2><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Use</a></li><li><a href="/refund-policy">Refund and Cancellation Policy</a></li></ul></div>
 </div>
 <div class="foot-base">
 <p>© 2026 Brightforge Labs LLC. All rights reserved.</p>
-<p>A Florida limited liability company · Florida, USA</p>
+<p>FadeReady, LaneTally, SizeGuard and Nail Signature are products of Brightforge Labs LLC, a Florida limited liability company, which is the seller. Payments are processed securely by Stripe. Customer service: {email_link()}</p>
 </div>
 </div>
 </footer>
@@ -600,8 +601,16 @@ def terms():
 <h2>2. Your account</h2>
 <p>If an app asks you to make an account, please give true information and keep your password safe. You are responsible for what happens in your account. Tell us right away if you think someone else is using it.</p>
 
-<h2>3. Payments and subscriptions</h2>
-<p>Some apps or features may cost money. Prices are shown before you pay. If you buy through the Apple App Store or Google Play, their payment and refund rules also apply. Subscriptions renew until you cancel them, and you can cancel any time in your account or store settings.</p>
+<h2>3. Payments, subscriptions, cancellation and refunds</h2>
+<p>Some apps or features cost money. They are sold by Brightforge Labs LLC. Prices, the currency and the billing period are shown before you pay. Our apps are digital services: nothing is shipped, and you get access online after payment.</p>
+<ul>
+<li><strong>Automatic renewal.</strong> A subscription renews automatically at the end of each billing period, at the price shown when you signed up, until you cancel.</li>
+<li><strong>Cancelling.</strong> You can cancel any time in your account or billing settings, in your Apple or Google subscription settings if you bought there, or by emailing us. No further payments are taken after you cancel, and you keep access until the end of the period you already paid for.</li>
+<li><strong>Refunds.</strong> Refunds follow our <a href="/refund-policy">Refund and Cancellation Policy</a>. Purchases made through the Apple App Store or Google Play are refunded by Apple or Google under their rules.</li>
+<li><strong>Trials and offers.</strong> A free trial, founding offer, discount or promo code shows its full terms before you pay, including the price after it ends and that it renews.</li>
+<li><strong>Price changes.</strong> If we change the price of a subscription, we tell you before the change applies to you, and you can cancel before it does.</li>
+<li><strong>Payment processing.</strong> Payments on our websites are processed securely by Stripe. We do not store your full card number.</li>
+</ul>
 
 <h2>4. Your content</h2>
 <p>You own the information you put into our apps. You give us permission to store and use it only to run the app for you. We protect it as described in our <a href="/privacy">Privacy Policy</a>.</p>
@@ -610,7 +619,7 @@ def terms():
 <p>Our apps, website, logos and names (like Brightforge Labs and FadeReady) belong to Brightforge Labs LLC and its companies. Please do not use them without our permission.</p>
 
 <h2>6. Trading tools are not financial advice</h2>
-<p>Our trading apps help you calculate, plan and keep records. They do not tell you what to buy or sell, and they are not financial, investment or tax advice. Trading is risky and you can lose money. You are responsible for your own trades.</p>
+<p>Our trading apps, like SizeGuard, are software that helps you calculate, plan and keep records of your own trades. They do not tell you what to buy or sell, do not give signals, and are not financial, investment or tax advice. We do not sell funded or prop firm accounts, and we never hold, manage or move your money. We do not promise profits. Trading involves risk of loss, and you are responsible for your own trades.</p>
 
 <h2>7. Other websites and services</h2>
 <p>Our website and apps may link to other services (like payment companies or app stores). We do not control them and are not responsible for them.</p>
@@ -634,6 +643,59 @@ def terms():
 <p>Questions about these terms? Email {email_link()}.</p>""")
 
 
+def refund_policy():
+    return legal("refund-policy", "Refund and Cancellation Policy | Brightforge Labs",
+                 "Refund and Cancellation Policy",
+                 "How to cancel a subscription and how refunds work for FadeReady, LaneTally, SizeGuard and Nail Signature, sold by Brightforge Labs LLC.",
+                 f"""<p>This policy explains how to cancel and how to get a refund for anything you buy from <strong>Brightforge Labs LLC</strong> ("Brightforge Labs", "we", "us"). It covers our apps and websites: FadeReady, LaneTally, SizeGuard and Nail Signature. Each of them is a digital service. Nothing is shipped to you, and you get access online right after payment.</p>
+
+<h2>The short version</h2>
+<ul>
+<li>Subscriptions renew automatically each billing period until you cancel.</li>
+<li>You can cancel any time. You will not be charged again, and you keep access until the end of the period you already paid for.</li>
+<li>Your first payment, or a one-time purchase, is refunded in full if you ask within {REFUND_DAYS} days.</li>
+<li>A mistaken or duplicate charge is always refunded.</li>
+</ul>
+
+<h2>How to cancel a subscription</h2>
+<ul>
+<li><strong>In your account:</strong> open your account or billing settings in the app or on the app's website and choose cancel.</li>
+<li><strong>By email:</strong> write to the support email of the app, from the email on your account, and ask us to cancel. We cancel it and confirm by email.</li>
+<li><strong>Bought through Apple or Google:</strong> cancel in your Apple ID subscriptions or in Google Play subscriptions.</li>
+</ul>
+<p>When you cancel, no further payments are taken. Your access continues until the end of the billing period you already paid for, and then it stops. Cancel before the renewal date to avoid the next charge. We do not give partial refunds for the unused part of a billing period that has already started, except as described below.</p>
+
+<h2>Refunds</h2>
+<ul>
+<li><strong>First payment or one-time purchase:</strong> email us within {REFUND_DAYS} days of the payment and we refund it in full.</li>
+<li><strong>Renewals:</strong> if a renewal charged you after you cancelled, tell us right away and we will refund that charge.</li>
+<li><strong>Mistaken or duplicate charges:</strong> always refunded in full.</li>
+<li><strong>Anything else:</strong> if something is wrong with the service, email us. We look at each case and will do what is fair.</li>
+</ul>
+<p>Refunds go back to the card or payment method you paid with, usually within 5 to 10 business days. Your bank may take a little longer to show it.</p>
+
+<h2>Free trials, founding offers, discounts and promo codes</h2>
+<p>If an app offers a free trial, a founding offer, a discount or a promo code, its full terms are shown before you pay: how long it lasts, the price you pay after it ends, that the subscription renews automatically, and how to cancel before you are charged. If you cancel before a trial ends, you are not charged.</p>
+
+<h2>Purchases through Apple or Google</h2>
+<p>If you buy through the Apple App Store or Google Play, Apple or Google handles the payment and the refund, under their rules. Ask them for the refund. We cannot refund those purchases ourselves, but we are happy to help you find the right place to ask.</p>
+
+<h2>How to ask for a refund or cancellation</h2>
+<p>Email {email_link()}. For LaneTally you can also email {email_link(addr="support@lanetally.com")}, and for SizeGuard {email_link(addr="support@sizeguard.com")}. Please tell us the app name, the email on your account and the date of the payment. We usually reply within one or two business days.</p>
+<p>Please contact us before you ask your bank for a chargeback. We would like the chance to fix it quickly.</p>
+
+<h2>Payments and seller</h2>
+<p>Payments on our websites are processed securely by Stripe. We never see or store your full card number. The seller is Brightforge Labs LLC, a Florida limited liability company. See also our <a href="/terms">Terms of Use</a> and <a href="/privacy">Privacy Policy</a>.</p>
+
+<h2>Changes to this policy</h2>
+<p>We may update this policy. When we do, we will change the date at the top. A change does not affect a payment you already made.</p>
+
+<h2>Contact us</h2>
+<p>Brightforge Labs LLC, Florida, USA. Email: {email_link()}</p>""")
+
+
+SOLD = {'fr': ('a paid online subscription to FadeReady, the barbershop app for booking, the live line, barber and client apps, bookkeeping and license reminders', 'fadeready.com', 'https://fadeready.com/', 'hello@brightforgelabs.app'), 'tr': ('paid access to SizeGuard, a software toolkit for planning and recording your own trades: a stop size calculator, a trading journal, a daily journal and a prop firm tracker', 'sizeguard.com', 'https://sizeguard.com/', 'support@sizeguard.com'), 'sl': ('a paid online subscription to Nail Signature, the nail salon app for booking, the live line, nail tech and client apps, bookkeeping and license reminders', 'nailsignature.com', 'https://nailsignature.com/', 'hello@brightforgelabs.app'), 'lt': ('a paid online subscription to LaneTally, truck dispatch and trucking accounting software for dispatchers, carriers and owner-operators', 'lanetally.com', 'https://lanetally.com/', 'support@lanetally.com')}
+
 APP_DETAILS = {
     "fr": {
         "title": "FadeReady: the barbershop app for booking, the live line and bookkeeping",
@@ -652,7 +714,7 @@ APP_DETAILS = {
         "faq": [
             ("What is FadeReady?", "FadeReady is an app for barbershops. It handles online booking, a live line for walk-ins, a barber app, a client app, bookkeeping and license renewal reminders."),
             ("Who makes FadeReady?", "FadeReady is made, owned and run by Brightforge Labs LLC, a software company in Florida, USA."),
-            ("When will FadeReady be available?", "FadeReady is coming soon. Join the waiting list at fadeready.com to get early access and the founding deal."),
+            ("When will FadeReady be available?", "FadeReady is coming soon. Join the waiting list at fadeready.com to get early access. If a founding offer, free trial or discount is available, its full terms (how long it lasts, the price after it ends, that it renews automatically, and how to cancel before you are charged) are shown on fadeready.com before you pay."),
         ],
         "cta": ("Visit fadeready.com", "https://fadeready.com/"),
         "category": "BusinessApplication",
@@ -669,11 +731,12 @@ APP_DETAILS = {
             ("Trading journal", "Log every trade with entry, exit, size, result and notes, then review what works and what doesn't."),
             ("Daily journal", "Write down your plan, your mood and your lessons each day, so you can spot the habits behind good and bad days."),
             ("Prop firm tracker", "Track every evaluation, reset and monthly fee across prop firms in one place."),
-            ("Payout tracking", "Record every payout next to what you spent, so you see what you really earn from prop firms."),
+            ("Payout tracking", "Record the payouts you receive next to what you spent, so your own records show the full picture."),
         ],
         "faq": [
             ("What is SizeGuard?", "SizeGuard is a trading toolkit app with a stop size calculator for futures, forex, stocks and crypto, a trading journal, a daily journal and a prop firm tracker for evaluations, resets, fees and payouts."),
-            ("Is SizeGuard financial advice?", "No. It is a tool for planning and record-keeping. It does not tell you what to buy or sell, and trading carries risk."),
+            ("Is SizeGuard financial advice?", "No. It is a tool for planning and record-keeping. It does not tell you what to buy or sell, and trading carries risk of loss."),
+            ("Does SizeGuard sell funded accounts or trading signals?", "No. SizeGuard is software only. It does not sell funded or prop firm accounts, does not give signals or investment advice, does not trade for you, and never holds, manages or moves your money. It does not promise profits."),
             ("When will SizeGuard be available?", "It is in development and will launch at sizeguard.com. Email hello@brightforgelabs.app to hear when it launches."),
         ],
         "cta": ("Visit sizeguard.com", "https://sizeguard.com/"),
@@ -726,6 +789,27 @@ APP_DETAILS = {
 }
 
 
+def billing_section(a):
+    sold, site, site_url, mail = SOLD[a["key"]]
+    name = a["name"]
+    phone_note = ""
+    if a["key"] == "lt":
+        phone_note = f" The LaneTally phone apps do not sell anything inside the app. You pay only on the website, {site}."
+    risk = ""
+    if a["key"] == "tr":
+        risk = (f'<h2>Not financial advice</h2>'
+                f'<p>{name} is software for planning and recording your own trades. It does not sell funded or prop firm accounts, '
+                'give investment advice or trading signals, trade for you, or hold, manage or move money. It does not promise profits. '
+                'Trading involves risk of loss, and you are responsible for your own trades. '
+                'See our <a href="/terms">Terms of Use</a>.</p>')
+    return f"""{risk}<h2>What is sold, pricing and payment</h2>
+<p><strong>What you buy:</strong> {sold}. It is a digital service. Nothing is shipped, and you use it online right after payment.</p>
+<p><strong>Price:</strong> plans, prices and billing periods are shown on <a href="{site_url}">{site}</a> before you pay, with the currency and how often you are billed. You are not charged until you complete checkout there.{phone_note}</p>
+<p><strong>Renewal and cancellation:</strong> a subscription renews automatically each billing period until you cancel. You can cancel any time, and you keep access until the end of the period you already paid for. Any free trial, founding offer, discount or promo code shows its full terms before you pay: how long it lasts, the price after it, that it renews, and how to cancel before you are charged. Read the <a href="/refund-policy">Refund and Cancellation Policy</a>.</p>
+<p><strong>Payments:</strong> payments are processed securely by Stripe. We never see or store your full card number.</p>
+<p><strong>Seller and customer service:</strong> {name} is sold by Brightforge Labs LLC, a Florida limited liability company. Email us at {email_link(addr=mail)}.</p>"""
+
+
 def app_page(a):
     d = APP_DETAILS[a["key"]]
     url = f"{SITE}/{a['slug']}"
@@ -746,6 +830,7 @@ def app_page(a):
 <h2>Who makes it</h2>
 <p>{a['ref'][0].upper() + a['ref'][1:]} is made, owned and run by <a href="/about">Brightforge Labs LLC</a>, a software company in Florida, USA. Like every app we make, it is simple, fast, beautiful and secure.</p>
 <p><a class="btn btn-primary" href="{href}">{label}</a></p>
+{billing_section(a)}
 </div>
 </section>
 
@@ -856,11 +941,11 @@ def tidy(html):
 
 def main():
     pages = {"index.html": home(), "about.html": about(), "contact.html": contact(), "support.html": support(),
-             "privacy.html": privacy(), "terms.html": terms(), "404.html": not_found(),
+             "privacy.html": privacy(), "terms.html": terms(), "refund-policy.html": refund_policy(), "404.html": not_found(),
              **{f"{a['slug']}.html": app_page(a) for a in APPS}}
     for name, html in pages.items():
         (OUT / name).write_text(tidy(html))
-    urls = ["", *[a["slug"] for a in APPS], "about", "contact", "support", "privacy", "terms"]
+    urls = ["", *[a["slug"] for a in APPS], "about", "contact", "support", "privacy", "terms", "refund-policy"]
     prio = {"": "1.0", "fadeready": "0.9", "sizeguard": "0.8", "nail-signature": "0.8", "lanetally": "0.9",
             "about": "0.8", "contact": "0.7", "support": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',

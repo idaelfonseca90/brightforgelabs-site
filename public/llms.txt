@@ -41,3 +41,4 @@
 - [Support and account deletion](https://brightforgelabs.app/support): help emails, privacy and terms links, and how to delete your account for FadeReady, LaneTally and Nail Signature
 - [Privacy Policy](https://brightforgelabs.app/privacy)
 - [Terms of Use](https://brightforgelabs.app/terms)
+- [Refund and Cancellation Policy](https://brightforgelabs.app/refund-policy): how to cancel subscriptions and get refunds
