@@ -606,7 +606,7 @@ def terms():
 <ul>
 <li><strong>Automatic renewal.</strong> A subscription renews automatically at the end of each billing period, at the price shown when you signed up, until you cancel.</li>
 <li><strong>Cancelling.</strong> You can cancel any time in your account or billing settings, in your Apple or Google subscription settings if you bought there, or by emailing us. No further payments are taken after you cancel, and you keep access until the end of the period you already paid for.</li>
-<li><strong>Refunds.</strong> Refunds follow our <a href="/refund-policy">Refund and Cancellation Policy</a>. Purchases made through the Apple App Store or Google Play are refunded by Apple or Google under their rules.</li>
+<li><strong>Refunds.</strong> Your first payment, or a one-time purchase, is refunded in full if you ask within {REFUND_DAYS} days. Renewal payments are not refunded, and mistaken or duplicate charges are always refunded. Purchases made through the Apple App Store or Google Play follow Apple's and Google's own refund rules, so request those refunds from Apple or Google. See our <a href="/refund-policy">Refund and Cancellation Policy</a>.</li>
 <li><strong>Trials and offers.</strong> A free trial, founding offer, discount or promo code shows its full terms before you pay, including the price after it ends and that it renews.</li>
 <li><strong>Price changes.</strong> If we change the price of a subscription, we tell you before the change applies to you, and you can cancel before it does.</li>
 <li><strong>Payment processing.</strong> Payments on our websites are processed securely by Stripe. We do not store your full card number.</li>
@@ -654,6 +654,8 @@ def refund_policy():
 <li>Subscriptions renew automatically each billing period until you cancel.</li>
 <li>You can cancel any time. You will not be charged again, and you keep access until the end of the period you already paid for.</li>
 <li>Your first payment, or a one-time purchase, is refunded in full if you ask within {REFUND_DAYS} days.</li>
+<li>Renewal payments are not refunded. Cancel before the renewal date to avoid the next charge.</li>
+<li>Purchases made through the Apple App Store or Google Play follow Apple's and Google's own refund rules. You ask Apple or Google for the refund.</li>
 <li>A mistaken or duplicate charge is always refunded.</li>
 </ul>
 
@@ -663,14 +665,15 @@ def refund_policy():
 <li><strong>By email:</strong> write to the support email of the app, from the email on your account, and ask us to cancel. We cancel it and confirm by email.</li>
 <li><strong>Bought through Apple or Google:</strong> cancel in your Apple ID subscriptions or in Google Play subscriptions.</li>
 </ul>
-<p>When you cancel, no further payments are taken. Your access continues until the end of the billing period you already paid for, and then it stops. Cancel before the renewal date to avoid the next charge. We do not give partial refunds for the unused part of a billing period that has already started, except as described below.</p>
+<p>When you cancel, no further payments are taken. Your access continues until the end of the billing period you already paid for, and then it stops. Cancel before the renewal date to avoid the next charge. Renewal payments are not refunded, and we do not give partial period refunds for the unused part of a billing period that has already started. The exceptions are the first payment window and mistaken or duplicate charges, described below.</p>
 
 <h2>Refunds</h2>
 <ul>
 <li><strong>First payment or one-time purchase:</strong> email us within {REFUND_DAYS} days of the payment and we refund it in full.</li>
-<li><strong>Renewals:</strong> if a renewal charged you after you cancelled, tell us right away and we will refund that charge.</li>
+<li><strong>Renewals:</strong> renewal payments are not refunded. To stop the next charge, cancel before the renewal date. You keep access until the end of the period you already paid for.</li>
+<li><strong>Apple App Store and Google Play:</strong> these purchases follow Apple's and Google's own refund rules. Ask Apple or Google for the refund.</li>
 <li><strong>Mistaken or duplicate charges:</strong> always refunded in full.</li>
-<li><strong>Anything else:</strong> if something is wrong with the service, email us. We look at each case and will do what is fair.</li>
+<li><strong>Anything else:</strong> if something is wrong with the service, email us and we will look into it.</li>
 </ul>
 <p>Refunds go back to the card or payment method you paid with, usually within 5 to 10 business days. Your bank may take a little longer to show it.</p>
 
@@ -678,7 +681,7 @@ def refund_policy():
 <p>If an app offers a free trial, a founding offer, a discount or a promo code, its full terms are shown before you pay: how long it lasts, the price you pay after it ends, that the subscription renews automatically, and how to cancel before you are charged. If you cancel before a trial ends, you are not charged.</p>
 
 <h2>Purchases through Apple or Google</h2>
-<p>If you buy through the Apple App Store or Google Play, Apple or Google handles the payment and the refund, under their rules. Ask them for the refund. We cannot refund those purchases ourselves, but we are happy to help you find the right place to ask.</p>
+<p>If you buy through the Apple App Store or Google Play, Apple or Google handles the payment and the refund, under their own refund rules. Request the refund from Apple or Google. We cannot refund those purchases ourselves, but we are happy to help you find the right place to ask.</p>
 
 <h2>How to ask for a refund or cancellation</h2>
 <p>Email {email_link()}. For LaneTally you can also email {email_link(addr="support@lanetally.com")}, and for SizeGuard {email_link(addr="support@sizeguard.com")}. Please tell us the app name, the email on your account and the date of the payment. We usually reply within one or two business days.</p>
@@ -805,7 +808,7 @@ def billing_section(a):
     return f"""{risk}<h2>What is sold, pricing and payment</h2>
 <p><strong>What you buy:</strong> {sold}. It is a digital service. Nothing is shipped, and you use it online right after payment.</p>
 <p><strong>Price:</strong> plans, prices and billing periods are shown on <a href="{site_url}">{site}</a> before you pay, with the currency and how often you are billed. You are not charged until you complete checkout there.{phone_note}</p>
-<p><strong>Renewal and cancellation:</strong> a subscription renews automatically each billing period until you cancel. You can cancel any time, and you keep access until the end of the period you already paid for. Any free trial, founding offer, discount or promo code shows its full terms before you pay: how long it lasts, the price after it, that it renews, and how to cancel before you are charged. Read the <a href="/refund-policy">Refund and Cancellation Policy</a>.</p>
+<p><strong>Renewal and cancellation:</strong> a subscription renews automatically each billing period until you cancel. You can cancel any time, and you keep access until the end of the period you already paid for. Any free trial, founding offer, discount or promo code shows its full terms before you pay: how long it lasts, the price after it, that it renews, and how to cancel before you are charged. Your first payment is refunded in full if you ask within {REFUND_DAYS} days, and renewal payments are not refunded. Purchases through the Apple App Store or Google Play follow Apple's and Google's own refund rules. Read the <a href="/refund-policy">Refund and Cancellation Policy</a>.</p>
 <p><strong>Payments:</strong> payments are processed securely by Stripe. We never see or store your full card number.</p>
 <p><strong>Seller and customer service:</strong> {name} is sold by Brightforge Labs LLC, a Florida limited liability company. Email us at {email_link(addr=mail)}.</p>"""
 
